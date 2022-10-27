@@ -11,6 +11,24 @@ class UsersController < ApplicationController
     render json: @current_user
   end
 
+  def show_points
+    render json: @current_user.points
+  end
+
+  def submit_essay
+    if (@current_user.points < params[:length].to_i)
+      render json: {error: "You Don't Have Enough Points!"}, status: :unprocessable_entity
+    else
+      @current_user.update(points: @current_user.points-params[:length].to_i)
+      render json: @current_user
+    end
+    
+  end
+
+  def submit_review
+    @current_user.update(points: @current_user.points+params[:length].to_i)
+    render json: @current_user
+  end
   private
 
   def user_params

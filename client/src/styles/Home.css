@@ -1,0 +1,77 @@
+.home {
+  margin: 4% 5% 0% 10%;
+  display: flex;
+}
+.home-left {
+  width: 250%;
+}
+.home-left > h4 {
+  font-family: sans-serif;
+  line-height: 0.7;
+  font-size: 13px;
+  transform: scale(1, 0.9);
+  margin-bottom: 0;
+}
+.home-left > h2 {
+  margin: 0;
+  font-size: 100px;
+  color: rgb(29, 29, 29);
+}
+.squiggle {
+  margin: 0;
+  height: 250px;
+  position: absolute;
+  left: 400px;
+  bottom: 210px;
+  transform: rotate(-2deg);
+}
+.home-left > h3 {
+  color: rgb(77, 77, 77);
+  font-weight: lighter;
+  font-size: 18px;
+  font-family: sans-serif;
+  margin-bottom: 0;
+}
+.home-btns {
+  padding: 5% 0% 0% 0%;
+}
+.home-btn {
+  border-radius: 100px;
+  padding: 13px;
+  margin-right: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  opacity: 70%;
+  font-size: 16px;
+}
+.home-btn:hover {
+  opacity: 100%;
+}
+.review-btn {
+  background-color: rgb(120, 120, 250);
+  color: white;
+  border: none;
+}
+.home-right {
+  margin-left: 12%;
+}
+.my-essays-btn {
+  background-color: rgb(208, 236, 245);
+  border: 2px solid rgb(161, 160, 160);
+}
+.hero-blob {
+  height: 600px;
+  width: 600px;
+  background-color: rgb(128, 128, 255);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+.hero-img-container {
+  position: relative;
+  bottom: 650px;
+  right: 80px;
+}
+.hero-img-container > img {
+  width: 100%;
+}

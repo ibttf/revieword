@@ -1,22 +1,45 @@
+.top-page {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 5%;
+}
+.top-page-img {
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 400px;
+}
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   padding: 1%;
+  margin: 2% 5%;
+  width: 800px;
+  border-radius: 100px;
   position: sticky;
   top: 0;
-  background-color: rgb(86, 144, 163);
+  background-color: white;
 }
-.navbar-img {
-  width: 30vh;
-  padding-right: 10%;
-}
+
 .navbar-btn {
-  background-color: rgb(86, 144, 163);
-  border: 1px solid;
-  border-radius: 20px;
+  border: none;
+  background-color: white;
+  color: darkgray;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: sans-serif;
   padding: 10px;
   margin-right: 30px;
-  font-size: 15px;
+  transform: 100ms;
+}
+.navbar-btn:hover {
+  scale: 1.1;
+}
+.navbar-btn:focus {
+  color: black;
+}
+.active {
+  color: black;
 }

@@ -1,0 +1,42 @@
+.reviewed-essay {
+  margin: 0 20%;
+  display: flex;
+  flex-direction: column;
+}
+.reviewed-essay-header {
+  color: rgb(18, 26, 70);
+}
+.reviewed-essay-header > p:hover {
+  cursor: pointer;
+}
+.reviewed-essay-feedback {
+  background-color: white;
+  border-radius: 20px;
+  padding: 2%;
+  margin-bottom: 2%;
+  font-size: 18px;
+}
+.reviewed-essay-feedback > h5 > span {
+  color: rgb(119, 118, 118);
+  line-height: 30px;
+}
+.reviewed-essay-content {
+  background-color: white;
+  border-radius: 20px;
+  padding: 2%;
+}
+.reviewed-essay-content > h4 {
+  background-color: rgb(18, 26, 70);
+  color: white;
+  border-radius: 20px;
+  padding: 2%;
+  font-weight: lighter;
+}
+.reviewed-essay-content > h4 > span {
+  font-weight: bold !important;
+}
+.reviewed-essay-content > h5 {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 35px;
+}

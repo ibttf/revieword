@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-
+import { useHistory } from "react-router-dom";
 function SignUpForm({ onLogin }) {
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -29,6 +30,7 @@ function SignUpForm({ onLogin }) {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+    history.push("/");
   }
 
   return (
@@ -51,7 +53,7 @@ function SignUpForm({ onLogin }) {
         autoComplete="current-password"
       />
 
-      <label htmlFor="password">Password Confirmation</label>
+      <label htmlFor="password">Confirm Password</label>
       <input
         type="password"
         id="password_confirmation"

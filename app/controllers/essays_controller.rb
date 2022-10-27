@@ -45,7 +45,7 @@ class EssaysController < ApplicationController
   private
 
   def essay_params
-    params.permit(:content, :prompt)
+    params.permit(:content, :prompt, :length)
   end
 
   def essay_review_params

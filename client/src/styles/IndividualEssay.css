@@ -1,0 +1,63 @@
+.individual-essay {
+  margin: 0 20%;
+}
+.individual-essay > h1 {
+  color: rgb(18, 26, 70);
+}
+.individual-essay-content {
+  background-color: white;
+  padding: 2%;
+  line-height: 30px;
+  border-radius: 10px;
+}
+.individual-essay-content-prompt {
+  background-color: rgb(18, 26, 70);
+  padding: 1%;
+  border-radius: 20px;
+  color: white;
+}
+.individual-essay-content-prompt > span {
+  font-weight: bold;
+}
+.individual-essay-content-content {
+  padding: 2% 0;
+}
+.individual-essay-content-content > span {
+  font-weight: bold;
+}
+.individual-essay-form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10%;
+}
+.individual-essay-form > label {
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 1% 0;
+}
+
+.individual-essay-form > textarea {
+  font-family: sans-serif;
+  font-size: large;
+  border-radius: 10px;
+  border: none;
+  padding: 1%;
+
+  resize: none;
+  line-height: 30px;
+}
+.individual-essay-form > button {
+  width: 20%;
+  margin: 5% 40%;
+  padding: 9px;
+  background-color: rgb(18, 26, 70);
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 20px;
+  border: none;
+  transform: 100ms;
+}
+.individual-essay-form > button:hover {
+  scale: 1.1;
+}

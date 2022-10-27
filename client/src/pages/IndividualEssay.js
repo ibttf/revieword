@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import "../styles/IndividualEssay.css";
 const IndividualEssay = (props) => {
   const history = useHistory();
   let { id } = useParams();
   const [currentEssay, setCurrentEssay] = useState({});
-
   const [overallComments, setOverallComments] = useState("");
   const [toneComments, setToneComments] = useState("");
   const [flowComments, setFlowComments] = useState("");
@@ -16,9 +16,23 @@ const IndividualEssay = (props) => {
       .then((r) => r.json())
       .then(setCurrentEssay);
   }, []);
-
+  function getEssayDetails(essay) {
+    let essayLength = essay.length;
+    if (essayLength === "Short") {
+      return ["green", 1];
+    } else if (essayLength === "Medium") {
+      return ["yellow", 2];
+    } else {
+      return ["red", 3];
+    }
+  }
   function handleReviewSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
+    fetch(`/submit-review/${getEssayDetails(currentEssay)[1]}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+    });
     fetch(`/finish-review/${id}`, {
       method: "PATCH",
       headers: {
@@ -45,28 +59,42 @@ const IndividualEssay = (props) => {
   return (
     <div className="individual-essay">
       <h1>Review this Essay</h1>
-      <h2>{currentEssay.content}</h2>
-      <form className="individual-essay-form" onSubmit={handleReviewSubmit}>
+      <div className="individual-essay-content">
+        <p className="individual-essay-content-prompt">
+          <span>PROMPT:</span> {currentEssay.prompt}
+        </p>
+        <p className="individual-essay-content-content">
+          <span>ESSAY:</span>
+          <br></br> {currentEssay.content}
+        </p>
+      </div>
+      <form
+        className="individual-essay-form"
+        onSubmit={(e) => {
+          handleReviewSubmit(e);
+          getEssayDetails(currentEssay);
+        }}
+      >
         <label htmlFor="overallComments">Overall Feedback: </label>
         <textarea
           id="overallComments"
-          rows="10"
+          rows="5"
           onChange={(e) => setOverallComments(e.target.value)}
         />
         <label htmlFor="toneComments">Tone Feedback: </label>
         <textarea
           id="toneComments"
-          rows="10"
+          rows="5"
           onChange={(e) => setToneComments(e.target.value)}
         />
         <label htmlFor="flowComments">Flow Feedback: </label>
         <textarea
           id="flowComments"
-          rows="10"
+          rows="5"
           onChange={(e) => setFlowComments(e.target.value)}
         />
 
-        <button type="Submit">Submit Feedback</button>
+        <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
       </form>
       <div>
         {errors ? errors.map((err) => <div key={err}>{err}</div>) : <></>}

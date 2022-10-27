@@ -2,20 +2,27 @@ import { useState } from "react";
 import logo from "../styles/logo-no-background.png";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
+import { useHistory } from "react-router-dom";
 import "../styles/Login.css";
 function Login({ onLogin }) {
+  const history = useHistory();
   const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>
-      <img src={logo} className="login-img"></img>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
           <div />
           <p>
             Don't have an account? &nbsp;
-            <button onClick={() => setShowLogin(false)}>Sign Up</button>
+            <button
+              onClick={() => {
+                setShowLogin(false);
+              }}
+            >
+              Sign Up
+            </button>
           </p>
         </>
       ) : (
@@ -24,7 +31,14 @@ function Login({ onLogin }) {
           <div />
           <p>
             Already have an account? &nbsp;
-            <button onClick={() => setShowLogin(true)}>Log In</button>
+            <button
+              onClick={() => {
+                setShowLogin(false);
+                history.push("/");
+              }}
+            >
+              Log In
+            </button>
           </p>
         </>
       )}

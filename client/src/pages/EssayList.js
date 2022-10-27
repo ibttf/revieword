@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../styles/EssayList.css";
+
 function EssayList() {
   const [unReviewedEssays, setUnReviewedEssays] = useState([]);
   const [reviewedEssays, setReviewedEssays] = useState([]);
@@ -13,33 +15,52 @@ function EssayList() {
       .then((r) => r.json())
       .then(setReviewedEssays);
   }, []);
-  function handleDeleteEssay(id) {
-    fetch(`/essays/${id}`, { method: "DELETE" });
-  }
-  return (
-    <>
-      <h2>Essays Still Waiting for a Review</h2>
-      {unReviewedEssays.map((essay) => {
-        return (
-          <>
-            <div>{essay.content.substring(0, 120) + "..."}</div>
-            <button onClick={handleDeleteEssay(essay.id)}>Delete Essay</button>
-          </>
-        );
-      })}
-      <h2>Reviewed Essays</h2>
-      {reviewedEssays.map((essay) => {
-        return (
-          <>
-            <div>{essay.content.substring(0, 120) + "..."}</div>
 
-            <Link to={`/my-essay/${essay.id}`}>
-              <button>See Review</button>
-            </Link>
-          </>
-        );
-      })}
-    </>
+  return (
+    <div className="essay-list">
+      <h2>Essays Still Waiting for a Review</h2>
+      <div className="essays-container">
+        {unReviewedEssays.map((essay) => {
+          return (
+            <>
+              <div className="single-essay">
+                <p className="single-essay-prompt">
+                  {essay.prompt.substring(0, 50) + "..."}
+                </p>
+                <p className="single-essay-content">
+                  {essay.content.substring(0, 100) + "..."}
+                </p>
+                <br></br>
+                <Link to={`/unreviewed-essay/${essay.id}`}>
+                  <div className="essay-list-select">See Essay</div>
+                </Link>
+              </div>
+            </>
+          );
+        })}
+      </div>
+      <h2>Reviewed Essays</h2>
+      <div className="essays-container">
+        {reviewedEssays.map((essay) => {
+          return (
+            <>
+              <div className="single-essay">
+                <p className="single-essay-prompt">
+                  {essay.prompt.substring(0, 50) + "..."}
+                </p>
+                <p className="single-essay-content">
+                  {essay.content.substring(0, 100) + "..."}
+                </p>
+                <br></br>
+                <Link to={`/my-essay/${essay.id}`}>
+                  <div className="essay-list-select">See Review</div>
+                </Link>
+              </div>
+            </>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

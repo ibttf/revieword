@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_160908) do
     t.text "tone_comments"
     t.text "flow_comments"
     t.text "overall_comments"
+    t.string "length"
     t.boolean "is_reviewed"
     t.integer "user_id", null: false
     t.integer "reviewer_id"
@@ -29,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_160908) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.integer "points", default: 5
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

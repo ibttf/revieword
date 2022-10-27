@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "../styles/logo-no-background.png";
-
+import { useHistory } from "react-router-dom";
 function LoginForm({ onLogin }) {
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -20,6 +21,7 @@ function LoginForm({ onLogin }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
+        history.push("/");
       } else {
         r.json().then((err) => {
           setErrors(err.errors);
