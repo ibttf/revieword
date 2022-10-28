@@ -1,6 +1,6 @@
 # Revieword
 
-Phase 4 Project for Flatiron School: React/Rails API - Full Stack Application
+![revieword-gif](https://user-images.githubusercontent.com/60560932/198585461-68f7702a-a12d-4004-b727-bc26e52d7c48.gif)
 Check out our live frontend [_here_](google.com)
 
 ## Table of Contents
