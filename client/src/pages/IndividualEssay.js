@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "../styles/IndividualEssay.css";
-const IndividualEssay = (props) => {
+import Highlight from "../components/Highlight";
+
+const IndividualEssay = () => {
   const history = useHistory();
   let { id } = useParams();
   const [currentEssay, setCurrentEssay] = useState({});
@@ -10,11 +12,16 @@ const IndividualEssay = (props) => {
   const [flowComments, setFlowComments] = useState("");
   const [errors, setErrors] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [currentHighlights, setCurrentHighlights] = useState([]);
   useEffect(() => {
     fetch(`/current-essay/${id}`)
       .then((r) => r.json())
-      .then(setCurrentEssay);
+      .then((data) => {
+        setCurrentEssay(data);
+      });
+    fetch(`/current-essay-highlights/${id}`)
+      .then((r) => r.json())
+      .then(setCurrentHighlights);
   }, []);
   function getEssayDetails(essay) {
     let essayLength = essay.length;
@@ -56,6 +63,7 @@ const IndividualEssay = (props) => {
       }
     });
   }
+
   return (
     <div className="individual-essay">
       <h1>Review this Essay</h1>
@@ -65,7 +73,11 @@ const IndividualEssay = (props) => {
         </p>
         <p className="individual-essay-content-content">
           <span>ESSAY:</span>
-          <br></br> {currentEssay.content}
+          <br></br>
+          <Highlight
+            content={currentEssay.content}
+            highlights={currentHighlights}
+          ></Highlight>
         </p>
       </div>
       <form

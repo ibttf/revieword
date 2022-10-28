@@ -16,6 +16,22 @@ function EssayList() {
       .then(setReviewedEssays);
   }, []);
 
+  function createEssayButton(s) {
+    let color = "";
+    let points = 0;
+    if (s === "Short") {
+      color = "green";
+      points = 1;
+    } else if (s === "Medium") {
+      color = "orange";
+      points = 2;
+    } else {
+      color = "red";
+      points = 3;
+    }
+
+    return [color, points];
+  }
   return (
     <div className="essay-list">
       <h2>Essays Still Waiting for a Review</h2>
@@ -24,6 +40,14 @@ function EssayList() {
           return (
             <>
               <div className="single-essay">
+                <h5
+                  className="essay-length"
+                  style={{
+                    backgroundColor: createEssayButton(essay.length)[0],
+                  }}
+                >
+                  {essay.length}
+                </h5>
                 <p className="single-essay-prompt">
                   {essay.prompt.substring(0, 50) + "..."}
                 </p>
@@ -45,6 +69,14 @@ function EssayList() {
           return (
             <>
               <div className="single-essay">
+                <h5
+                  className="essay-length"
+                  style={{
+                    backgroundColor: createEssayButton(essay.length)[0],
+                  }}
+                >
+                  {essay.length}
+                </h5>
                 <p className="single-essay-prompt">
                   {essay.prompt.substring(0, 50) + "..."}
                 </p>

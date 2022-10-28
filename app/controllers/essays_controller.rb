@@ -4,14 +4,18 @@ class EssaysController < ApplicationController
     render json: Essay.all
   end
   def show
-    render json: Essay.find(params[:id])
+    essay=Essay.find(params[:id])
+
+    render json: essay, status: :ok
   end
+
+
   def unreviewed
     render json: @current_user.essays.where(is_reviewed: nil ), status: :ok 
   end
 
   def reviewed
-    render json: @current_user.essays.where(is_reviewed:true), status: :ok 
+    render json: @current_user.essays.where(is_reviewed:true), serializer: EssaysSerializer, status: :ok 
   end
 
   def reviewable
@@ -22,6 +26,8 @@ class EssaysController < ApplicationController
   def current
     render json: Essay.find(params[:id])
   end
+
+
 
   def create
     essay = @current_user.essays.create!(essay_params)

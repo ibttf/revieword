@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../styles/logo-no-background.png";
 import { useHistory } from "react-router-dom";
+import "../styles/LoginForm.css";
 function LoginForm({ onLogin }) {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -31,31 +32,41 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        autoComplete="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+    <div className="login-form">
+      <h1>Welcome back</h1>
+      <h2>Welcome back! Please enter your details.</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          autoComplete="username"
+          value={username}
+          placeholder="Enter your username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        autoComplete="on"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Your Password"
+          id="password"
+          autoComplete="on"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button type="submit">{isLoading ? "Loading..." : "Login"}</button>
+        <button type="submit">{isLoading ? "Loading..." : "Sign In"}</button>
 
-      <div>
-        {errors ? errors.map((err) => <div key={err}>{err}</div>) : <></>}
-      </div>
-    </form>
+        <div className="errors">
+          {errors ? (
+            errors.map((err) => <div key={err}>Oops! {err}</div>)
+          ) : (
+            <></>
+          )}
+        </div>
+      </form>
+    </div>
   );
 }
 

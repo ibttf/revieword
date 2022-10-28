@@ -9,6 +9,7 @@ import IndividualEssay from "../pages/IndividualEssay";
 import ReviewedEssay from "../pages/ReviewedEssay";
 import UnreviewedEssay from "../pages/UnreviewedEssay";
 import Home from "../pages/Home";
+
 import "../styles/App.css";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/login">
             <Login onLogin={setUser} />
           </Route>
+
           <Route path="/">
             <NavBar user={user} setUser={setUser} />
             <Home user={user} />

@@ -9,7 +9,7 @@ function NewEssay({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const [userPoints, setUserPoints] = useState(0);
-
+  const [pointValue, setPointValue] = useState(1);
   useEffect(() => {
     fetch("/show_points")
       .then((r) => r.json())
@@ -17,6 +17,18 @@ function NewEssay({ user }) {
         setUserPoints(points);
       });
   }, []);
+
+  function handleContentChange(cont) {
+    setContent(cont);
+    let contLength = cont.split(" ").length;
+    if (contLength < 300) {
+      setPointValue(1);
+    } else if (contLength < 700) {
+      setPointValue(2);
+    } else {
+      setPointValue(3);
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -80,7 +92,7 @@ function NewEssay({ user }) {
     <>
       <div className="new-essay">
         <h2>
-          Submit Essay <span>({userPoints} Points) </span>
+          Submit Essay <span>(You Have {userPoints} Points) </span>
         </h2>
 
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -97,7 +109,7 @@ function NewEssay({ user }) {
           <textarea
             id="content"
             rows="25"
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => handleContentChange(e.target.value)}
           ></textarea>
           {errors.map((err) => (
             <div key={err} className="submit-essay-error">
@@ -106,7 +118,7 @@ function NewEssay({ user }) {
           ))}
           {<div>{pointError.error}</div>}
           <button type="submit">
-            {isLoading ? "Loading..." : `Submit Essay`}
+            {isLoading ? "Loading..." : `Submit Essay (${pointValue} Point)`}
           </button>
         </form>
       </div>
