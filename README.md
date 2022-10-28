@@ -1,7 +1,7 @@
 # Revieword
 A website designed for people to be able to review essays and get their essays reviewed.
 
-[![WALKTHROUGH](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee))]
+[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee)](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee)
 ## Table of Contents
 
 - [General Info](#general-information)
