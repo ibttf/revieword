@@ -1,7 +1,7 @@
 # Revieword
 
 Phase 4 Project for Flatiron School: React/Rails API - Full Stack Application
-Check out our live frontend [_here_](https://workout-project-p4.herokuapp.com/)
+Check out our live frontend [_here_](google.com)
 
 ## Table of Contents
 
