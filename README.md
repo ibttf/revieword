@@ -173,9 +173,20 @@ It should be possible to shutdown the server using [CTRL-C]. If that fails, foll
 </div>
 
 1. [`Login`] with your username & password. If this is your first time, create a user profile [`Sign Up`]
+![image](https://user-images.githubusercontent.com/60560932/198585683-405ec66c-a80f-4c11-ab4a-042f26703724.png)
+
 2. Go to [`Submit`] to start submitting essays. You start with 5 points and your essay will cost anywhere from 1-3 points to submit depending on its length
+![image](https://user-images.githubusercontent.com/60560932/198585919-ee537167-3479-408f-b710-b30804b194f3.png)
+
 3. Go to [`Review`] to start reviewing essays. See a list of 5 randomly selected unreviewed essays from other users and start reviewing. Feel free to highlight to help you read and mark any comments.
-4. Go to [`Logout`] to sign out of your account and get redirected back to the homepage.
+![image](https://user-images.githubusercontent.com/60560932/198586098-c8be2dca-fb71-4804-9867-8ca10dcff8ae.png)
+
+4. Go to [`My Essays`] to see all the essays you posted. Delete an unreviewed essay, or see reviewed essays
+![image](https://user-images.githubusercontent.com/60560932/198586116-00be50fc-c3c4-42a8-b18a-40b657160bb4.png)
+![image](https://user-images.githubusercontent.com/60560932/198586148-1130c9b0-0ddb-49af-b806-558ffbd64c4f.png)
+![image](https://user-images.githubusercontent.com/60560932/198586170-259bfc19-d8f0-4af7-b3fe-df488501f211.png)
+
+5. Go to [`Logout`] to sign out of your account and get redirected back to the homepage.
 
 
 ## Project Status
