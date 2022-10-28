@@ -1,5 +1,5 @@
 # Revieword
-
+A website designed for people to be able to review essays and get their essays reviewed.
 ![revieword-gif](https://user-images.githubusercontent.com/60560932/198585461-68f7702a-a12d-4004-b727-bc26e52d7c48.gif)
 Check out our live frontend [_here_](google.com)
 
