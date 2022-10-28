@@ -15,7 +15,7 @@ class EssaysController < ApplicationController
   end
 
   def reviewed
-    render json: @current_user.essays.where(is_reviewed:true), serializer: EssaysSerializer, status: :ok 
+    render json: @current_user.essays.where(is_reviewed:true), status: :ok 
   end
 
   def reviewable

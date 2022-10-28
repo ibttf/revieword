@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :users, only: [:create,:show]
   resources :essays, only: [:index,:create, :show, :destroy]
-  resources :highlights, only: [:index]
   get "/me", to: "users#show"
   get "/current-essay/:id", to: "essays#current"
   get "/essays-reviewed", to: "essays#reviewed"
