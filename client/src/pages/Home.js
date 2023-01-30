@@ -9,8 +9,10 @@ const Home = ({ user }) => {
       <div className="home">
         <div className="home-left">
           <h4>LET'S WRITE THE BEST ESSAY EVER</h4>
-          <h2>Every Essay Can Use a Little Hepl</h2>
-          <img src={squiggle} className="squiggle"></img>
+          <h2>Every Essay Can Use a Little Hepl
+              <img src={squiggle} className="squiggle"></img>
+          </h2>
+        
           <h3>Get Your Essay Reviewed Today</h3>
           <div className="home-btns">
             <Link to="/review">

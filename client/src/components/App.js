@@ -9,7 +9,7 @@ import IndividualEssay from "../pages/IndividualEssay";
 import ReviewedEssay from "../pages/ReviewedEssay";
 import UnreviewedEssay from "../pages/UnreviewedEssay";
 import Home from "../pages/Home";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/App.css";
 
 function App() {

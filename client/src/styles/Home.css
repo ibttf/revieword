@@ -1,34 +1,33 @@
 .home {
-  margin: 4% 5% 0% 10%;
+  margin: 5vw 5% 0% 10%;
   display: flex;
 }
-.home-left {
-  width: 250%;
-}
+
 .home-left > h4 {
   font-family: sans-serif;
   line-height: 0.7;
-  font-size: 13px;
+  font-size: 1vw;
   transform: scale(1, 0.9);
   margin-bottom: 0;
 }
 .home-left > h2 {
   margin: 0;
-  font-size: 100px;
+  font-size: 5vw;
   color: rgb(29, 29, 29);
+  position: relative;
 }
 .squiggle {
-  margin: 0;
-  height: 250px;
   position: absolute;
-  left: 400px;
-  bottom: 210px;
+  height: 5vw;
+  width: 15vw;
+  top: 10px;
+  right: 15px;
   transform: rotate(-2deg);
 }
 .home-left > h3 {
   color: rgb(77, 77, 77);
   font-weight: lighter;
-  font-size: 18px;
+  font-size: 1vw;
   font-family: sans-serif;
   margin-bottom: 0;
 }
@@ -37,12 +36,12 @@
 }
 .home-btn {
   border-radius: 100px;
-  padding: 13px;
-  margin-right: 20px;
+  padding: 1vw;
+  margin-right: 1vw;
   font-family: sans-serif;
   font-weight: bold;
   opacity: 70%;
-  font-size: 16px;
+  font-size: .8vw;
 }
 .home-btn:hover {
   opacity: 100%;
@@ -60,8 +59,8 @@
   border: 2px solid rgb(161, 160, 160);
 }
 .hero-blob {
-  height: 600px;
-  width: 600px;
+  height: 30vw;
+  width: 30vw;
   background-color: rgb(128, 128, 255);
   border-radius: 50%;
   display: inline-block;
@@ -69,9 +68,44 @@
 }
 .hero-img-container {
   position: relative;
-  bottom: 650px;
-  right: 80px;
+  bottom: 33vw;
+  right: 5vw;
 }
 .hero-img-container > img {
-  width: 100%;
+  width: 40vw;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .home{
+    flex-direction: column;
+    text-align :center;
+  }
+  
+.home-left > h4 {
+  margin: 5% 0;
+  font-size: 14px;
+}
+.home-left > h2 {
+  margin-bottom: 5%;
+  font-size: 30px;
+
+}
+
+.home-left > h3 {
+  font-size: 10px;
+  margin: 5% 0;
+}
+
+.home-btn {
+  margin-bottom: 15%;
+  font-size: 10px;
+}
+}
+
+@media only screen and (max-width: 800px) {
+  .home{
+    flex-direction: column;
+    text-align :center;
+  }
 }
