@@ -31,6 +31,7 @@
   font-size: 1.5vw;
   font-family: sans-serif;
   margin-bottom: 0;
+  margin-top: -10%;
 }
 .home-btns {
   padding: 5% 0% 0% 0%;
@@ -118,6 +119,7 @@
   }
   .home-left > h3{
     font-size: 2vw;
+    margin-top: -10%;
   }
   .home-btn{
     font-size: 2.5vw;
@@ -127,7 +129,7 @@
     margin-top: 10%;
   }
   .squiggle{
-    height: 20vw;
+    height: 5vw;
     width: 20vw;
     margin-left: 60%;
   
