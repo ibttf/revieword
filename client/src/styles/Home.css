@@ -1,33 +1,34 @@
 .home {
-  margin: 5vw 5% 0% 10%;
+  padding: 5% 10% 0% 10%;
   display: flex;
+  overflow:hidden;
 }
 
 .home-left > h4 {
   font-family: sans-serif;
   line-height: 0.7;
-  font-size: 1vw;
+  font-size: 1.2vw;
   transform: scale(1, 0.9);
   margin-bottom: 0;
 }
 .home-left > h2 {
   margin: 0;
-  font-size: 5vw;
+  font-size: 5.5vw;
   color: rgb(29, 29, 29);
   position: relative;
 }
 .squiggle {
-  position: absolute;
-  height: 5vw;
+  position: relative;
+  height: 3vw;
   width: 15vw;
-  top: 10px;
-  right: 15px;
+  margin-left: 43%;
+  margin-top: -20%;
   transform: rotate(-2deg);
 }
 .home-left > h3 {
   color: rgb(77, 77, 77);
   font-weight: lighter;
-  font-size: 1vw;
+  font-size: 1.5vw;
   font-family: sans-serif;
   margin-bottom: 0;
 }
@@ -103,9 +104,43 @@
 }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 989px) {
   .home{
     flex-direction: column;
     text-align :center;
+    padding-top: 10%;
+  }
+  .home-left > h4{
+    font-size: 3vw;
+  }
+  .home-left > h2{
+    font-size: 9vw;
+  }
+  .home-left > h3{
+    font-size: 2vw;
+  }
+  .home-btn{
+    font-size: 2.5vw;
+    padding: 2% 5%;
+  }
+  .home-right{
+    margin-top: 10%;
+  }
+  .squiggle{
+    height: 20vw;
+    width: 20vw;
+    margin-left: 60%;
+  
+  }
+  .hero-blob{
+    height: 50vw;
+    width: 50vw;
+  }
+  .hero-img-container {
+    bottom: 48vw;
+    right: 0vw;
+  }
+  .hero-img-container > img {
+    width: 60vw;
   }
 }
