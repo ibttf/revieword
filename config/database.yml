@@ -20,6 +20,7 @@ test:
   <<: *default
   database: "revieword_database"
 
-# production:
-#   <<: *default
-#   database: <%=ENV['DATABASE_URL'] %>
+production:
+  <<: *default
+  adapter: postgresql
+  database: db/production.sqlite3
