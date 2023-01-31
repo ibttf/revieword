@@ -40,3 +40,17 @@
   bottom: 40%;
   left: 30%;
 }
+@media only screen and (max-width: 989px) {
+  .login-left{
+    width: 0%;
+  }
+  .login-left > img {
+    width: 0;
+  }
+  .login-img{
+    left: 40vw;
+    width: 20vw;
+  }
+
+
+}

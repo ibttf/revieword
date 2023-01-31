@@ -24,10 +24,10 @@
   padding: 10px;
   margin-right: 30px;
   text-decoration: none;
-  transform: 100ms;
+  transform: 500ms;
 }
 .navbar-btn:hover {
-font-size: 2vh;
+  color: black;
 }
 .navbar-btn:focus {
   color: black;
@@ -37,9 +37,11 @@ font-size: 2vh;
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 989px) {
   .navbar {
     margin: 0;
+    padding: 5%;
     border-radius: 0;
+
   }
 }
