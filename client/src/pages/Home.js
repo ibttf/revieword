@@ -43,10 +43,10 @@ const Home = ({ user }) => {
         
           <h3>Get Your Essay Reviewed Today</h3>
           <div className="home-btns">
-            <Link to="/review">
+            <Link to="/login">
               <button className="home-btn review-btn">Review Essays</button>
             </Link>
-            <Link to="/my-essays">
+            <Link to="/login">
               <button className="home-btn my-essays-btn">See My Essays</button>
             </Link>
           </div>
