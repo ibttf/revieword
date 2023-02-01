@@ -216,7 +216,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  pg (~> 1.4.5)
+  pg (>= 0.18, < 2.0)
   puma (~> 5.0)
   rails (~> 7.0.4)
   selenium-webdriver
