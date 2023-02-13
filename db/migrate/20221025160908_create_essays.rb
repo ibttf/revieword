@@ -6,7 +6,7 @@ class CreateEssays < ActiveRecord::Migration[6.1]
       t.text :tone_comments
       t.text :flow_comments
       t.text :overall_comments
-      t.string :length
+      t.text :length
     
       t.boolean :is_reviewed
       t.references :user, null: false, foreign_key: true
