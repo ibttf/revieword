@@ -42,7 +42,9 @@
   margin-right: 1vw;
   font-family: sans-serif;
   font-weight: bold;
-  opacity:.7;
+
+  opacity: .7;
+
   font-size: .8vw;
 }
 .home-btn:hover {

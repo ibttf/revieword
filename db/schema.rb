@@ -11,16 +11,19 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_10_25_160908) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "essays", force: :cascade do |t|
     t.text "content"
     t.text "prompt"
     t.text "tone_comments"
     t.text "flow_comments"
     t.text "overall_comments"
-    t.string "length"
+    t.text "length"
     t.boolean "is_reviewed"
-    t.integer "user_id", null: false
-    t.integer "reviewer_id"
+    t.bigint "user_id", null: false
+    t.bigint "reviewer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reviewer_id"], name: "index_essays_on_reviewer_id"
@@ -28,8 +31,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_160908) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
+    t.text "username"
+    t.text "password_digest"
     t.integer "points", default: 5
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

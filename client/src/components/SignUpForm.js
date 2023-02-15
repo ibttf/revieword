@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import config from "../baseUrl"
 function SignUpForm({ onLogin }) {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -12,8 +13,9 @@ function SignUpForm({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("/signup", {
+    fetch(`${config.baseUrl}/signup`, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../styles/logo-no-background.png";
 import { useHistory } from "react-router-dom";
 import "../styles/LoginForm.css";
+import config from "../baseUrl"
 function LoginForm({ onLogin }) {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -12,11 +13,12 @@ function LoginForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/login", {
+    fetch(`${config.baseUrl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      mode: "cors" ,
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       setIsLoading(false);
