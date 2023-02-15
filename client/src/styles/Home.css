@@ -42,11 +42,11 @@
   margin-right: 1vw;
   font-family: sans-serif;
   font-weight: bold;
-  opacity: 70%;
+  opacity:.7;
   font-size: .8vw;
 }
 .home-btn:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 .review-btn {
   background-color: rgb(120, 120, 250);
