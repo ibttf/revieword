@@ -11,17 +11,20 @@ import UnreviewedEssay from "../pages/UnreviewedEssay";
 import Home from "../pages/Home";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/App.css";
-
+import config from "../baseUrl"
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    console.log(config.baseUrl)
     // auto-login
-    fetch("/me").then((r) => {
+    fetch(`${config.baseUrl}/me`, {
+      mode: "cors"
+    }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) =>setUser(user));
       }
-    });
+    })
   }, []);
 
   return (

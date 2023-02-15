@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/EssayReview.css";
+import config from "../baseUrl"
 const EssayReview = () => {
   const [reviewableEssays, setReviewableEssays] = useState([]);
 
   useEffect(() => {
-    fetch("/essays-reviewable")
+    fetch(`${config.baseUrl}/essays-reviewable`,{mode: "cors" })
       .then((r) => r.json())
       .then((data) => setReviewableEssays([...data]));
   }, []);

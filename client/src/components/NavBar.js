@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../styles/logo-no-background.png";
 import "../styles/Navbar.css";
-
+import config from "../baseUrl"
 //bootstrap stuff
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -11,7 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function NavBar({ user, setUser }) {
     function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
+    fetch(`${config.baseUrl}/logout`, { method: "DELETE", mode: "cors" }).then((r) => {
       if (r.ok) {
         setUser(null);
       }
@@ -49,7 +49,7 @@ function NavBar({ user, setUser }) {
     </Navbar>
 
     )
-  } else {
+  } 
       return (
        <Navbar bg="light" expand="lg">
       <Container>
@@ -63,15 +63,15 @@ function NavBar({ user, setUser }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link >
-              <Link to="/review" className="navbar-btn">Review</Link>
+              <Link to="/login" className="navbar-btn">Review</Link>
             </Nav.Link>
             <Nav.Link >
-              <Link to="/new"  className="navbar-btn">Submit</Link>
+              <Link to="/login"  className="navbar-btn">Submit</Link>
             </Nav.Link>
             <Nav.Link >
-              <Link to="/my-essays"  className="navbar-btn">My Essays</Link>
+              <Link to="/login"  className="navbar-btn">My Essays</Link>
             </Nav.Link>
-            <Nav.Link onClick={handleLogoutClick}> 
+            <Nav.Link> 
               <Link to="/login"  className="navbar-btn">Login</Link>
             </Nav.Link>
             
@@ -80,7 +80,7 @@ function NavBar({ user, setUser }) {
       </Container>
     </Navbar>
     )
-  }
+  
 }
  
 

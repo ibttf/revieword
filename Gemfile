@@ -46,6 +46,10 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 
+#gem rack-cors to bypass cors errors
+gem "rack-cors"
+
+
 #active model serializer
 gem "active_model_serializers", "~> 0.10.13"
 
