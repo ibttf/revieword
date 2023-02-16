@@ -6,7 +6,7 @@ const EssayReview = () => {
   const [reviewableEssays, setReviewableEssays] = useState([]);
 
   useEffect(() => {
-    fetch(`${config.baseUrl}/essays-reviewable`,{mode: "cors" })
+    fetch(`${config.baseUrl}/essays-reviewable`,{mode: "no-cors" })
       .then((r) => r.json())
       .then((data) => setReviewableEssays([...data]));
   }, []);

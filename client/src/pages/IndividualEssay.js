@@ -14,12 +14,12 @@ const IndividualEssay = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentHighlights, setCurrentHighlights] = useState([]);
   useEffect(() => {
-    fetch(`${config.baseUrl}/current-essay/${id}`,{mode: "cors" })
+    fetch(`${config.baseUrl}/current-essay/${id}`,{mode: "no-cors" })
       .then((r) => r.json())
       .then((data) => {
         setCurrentEssay(data);
       });
-    fetch(`${config.baseUrl}/current-essay-highlights/${id}`,{mode: "cors" })
+    fetch(`${config.baseUrl}/current-essay-highlights/${id}`,{mode: "no-cors" })
       .then((r) => r.json())
       .then(setCurrentHighlights);
   }, []);
@@ -39,10 +39,11 @@ const IndividualEssay = () => {
     fetch(`${config.baseUrl}/submit-review/${getEssayDetails(currentEssay)[1]}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+      mode: "no-cors"
     });
     fetch(`${config.baseUrl}/finish-review/${id}`, {
       method: "PATCH",
-      mode: "cors" ,
+      mode: "no-cors" ,
       headers: {
         "Content-Type": "application/json",
       },

@@ -11,7 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function NavBar({ user, setUser }) {
     function handleLogoutClick() {
-    fetch(`${config.baseUrl}/logout`, { method: "DELETE", mode: "cors" }).then((r) => {
+    fetch(`${config.baseUrl}/logout`, { method: "DELETE", mode: "no-cors" }).then((r) => {
       if (r.ok) {
         setUser(null);
       }

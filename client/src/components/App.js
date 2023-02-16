@@ -19,7 +19,7 @@ function App() {
     console.log(config.baseUrl)
     // auto-login
     fetch(`${config.baseUrl}/me`, {
-      mode: "cors"
+      mode: "no-cors"
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) =>setUser(user));

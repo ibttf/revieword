@@ -15,7 +15,7 @@ function SignUpForm({ onLogin }) {
     setIsLoading(true);
     fetch(`${config.baseUrl}/signup`, {
       method: "POST",
-      mode: "cors",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,7 +31,7 @@ function SignUpForm({ onLogin }) {
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
-    });
+    }).catch(console.log("hello"));
     history.push("/");
   }
 
