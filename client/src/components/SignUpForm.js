@@ -17,9 +17,9 @@ function SignUpForm({ onLogin }) {
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "username": "newusername3",
-      "password": "newpassword",
-      "password_confirmation": "newpassword"
+        username,
+        password,
+        password_confirmation: passwordConfirmation,
     });
 
     var requestOptions = {
@@ -30,9 +30,14 @@ function SignUpForm({ onLogin }) {
     };
 
     fetch(`${config.baseUrl}/signup`, requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+      .then((r) => {
+      setIsLoading(false);
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    }).catch(err=>console.log(err, "hello"));
     history.push("/");
   }
 

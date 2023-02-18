@@ -7,7 +7,7 @@ const UnreviewedEssay = () => {
   const history = useHistory();
   const [currentEssay, setCurrentEssay] = useState({});
   function handleDeleteClick(id) {
-    fetch(`${config.baseUrl}/essays/${id}`, { method: "DELETE",mode: "no-cors"  });
+    fetch(`${config.baseUrl}/essays/${id}`, { method: "DELETE"});
     history.push("/my-essays");
   }
   useEffect(() => {

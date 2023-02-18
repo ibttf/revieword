@@ -18,9 +18,7 @@ function App() {
   useEffect(() => {
     console.log(config.baseUrl)
     // auto-login
-    fetch(`${config.baseUrl}/me`, {
-      mode: "no-cors"
-    }).then((r) => {
+    fetch(`${config.baseUrl}/me`).then((r) => {
       if (r.ok) {
         r.json().then((user) =>setUser(user));
       }

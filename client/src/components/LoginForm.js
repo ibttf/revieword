@@ -18,7 +18,6 @@ function LoginForm({ onLogin }) {
       headers: {
         "Content-Type": "application/json",
       },
-      mode: "no-cors" ,
       body: JSON.stringify({ username, password }),
     }).then((r) => {
       setIsLoading(false);

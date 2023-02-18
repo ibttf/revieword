@@ -12,12 +12,21 @@ function NewEssay({ user }) {
   const [userPoints, setUserPoints] = useState(0);
   const [pointValue, setPointValue] = useState(1);
   useEffect(() => {
-    fetch(`${config.baseUrl}/show_points`, {mode: "no-cors" })
-      .then((r) => r.json())
-      .then((points) => {
-        setUserPoints(points);
-      });
-  }, []);
+    fetch(`${config.baseUrl}/show_points`)
+      .then((r) => 
+      {
+        if (r.ok){
+        r.json()
+              .then((points) => {
+                console.log(points);
+                // setUserPoints(points);
+              })
+        }else{
+          setErrors([...errors])
+        } 
+
+        })}
+  , []);
 
   function handleContentChange(cont) {
     setContent(cont);
@@ -50,7 +59,7 @@ function NewEssay({ user }) {
     setIsLoading(true);
     fetch(`${config.baseUrl}/submit-essay/${essayPointValue}`, {
       method: "PATCH",
-      mode: "no-cors" ,
+
       headers: {
         "Content-Type": "application/json",
       },
@@ -62,7 +71,7 @@ function NewEssay({ user }) {
       } else {
         fetch(`${config.baseUrl}/essays`, {
           method: "POST",
-          mode: "no-cors" ,
+
           headers: {
             "Content-Type": "application/json",
           },
@@ -80,7 +89,7 @@ function NewEssay({ user }) {
               setErrors(err.errors);
               fetch(`${config.baseUrl}/submit-review/${essayPointValue}`, {
                 method: "PATCH",
-                mode: "no-cors" ,
+
                 headers: {
                   "Content-Type": "application/json",
                 },
