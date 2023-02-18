@@ -13,13 +13,19 @@ function LoginForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch(`${config.baseUrl}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    }).then((r) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({ username, password });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch(`${config.baseUrl}/login`,requestOptions)
+    .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));

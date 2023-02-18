@@ -16,7 +16,6 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log(config.baseUrl)
     // auto-login
     fetch(`${config.baseUrl}/me`).then((r) => {
       if (r.ok) {
