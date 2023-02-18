@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   patch "/submit-review/:length", to: "users#submit_review"
   delete "/logout", to: "sessions#destroy"
   
-  # Defines the root path route ("/")
+  # Defines the root path route ("/")x
   # root "articles#index"
 end
