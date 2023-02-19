@@ -9,11 +9,14 @@ Rails.application.routes.draw do
   get "/essays-unreviewed", to: "essays#unreviewed"
   get "/essays-reviewable", to: "essays#reviewable"
   get "/show_points", to: "users#show_points"
+
   post "/login", to: "sessions#create"
   post "/signup", to: "users#create"
+
   patch "/finish-review/:id", to: "essays#submit_review"
   patch "/submit-essay/:length", to: "users#submit_essay"
   patch "/submit-review/:length", to: "users#submit_review"
+  
   delete "/logout", to: "sessions#destroy"
   
   # Defines the root path route ("/")x
