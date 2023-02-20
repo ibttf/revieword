@@ -7,39 +7,41 @@
 .top-page-img {
   padding-left: 10%;
   padding-right: 10%;
-  width: 400px;
+  width: 18vw;
 }
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  padding: 1%;
-  margin: 2% 5%;
-  width: 800px;
+.navbar{
+  margin: 2% 15%;
   border-radius: 100px;
-  position: sticky;
-  top: 0;
-  background-color: white;
 }
+
 
 .navbar-btn {
   border: none;
-  background-color: white;
   color: darkgray;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 1.8vh;
   font-family: sans-serif;
   padding: 10px;
   margin-right: 30px;
-  transform: 100ms;
+  text-decoration: none;
+  transform: 500ms;
 }
 .navbar-btn:hover {
-  scale: 1.1;
+  color: black;
 }
 .navbar-btn:focus {
   color: black;
 }
 .active {
   color: black;
+}
+
+
+@media only screen and (max-width: 989px) {
+  .navbar {
+    margin: 0;
+    padding: 5%;
+    border-radius: 0;
+
+  }
 }

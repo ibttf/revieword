@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import config from "../baseUrl"
 function SignUpForm({ onLogin }) {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -12,24 +13,31 @@ function SignUpForm({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
         username,
         password,
         password_confirmation: passwordConfirmation,
-      }),
-    }).then((r) => {
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch(`${config.baseUrl}/signup`, requestOptions)
+      .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
-    });
+    }).catch(err=>console.log(err, "hello"));
     history.push("/");
   }
 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "../styles/UnreviewedEssay.css";
-
+import config from "../baseUrl"
 const UnreviewedEssay = () => {
   const id = useParams().essay;
   const history = useHistory();
   const [currentEssay, setCurrentEssay] = useState({});
   function handleDeleteClick(id) {
-    fetch(`/essays/${id}`, { method: "DELETE" });
+    fetch(`${config.baseUrl}/essays/${id}`, { method: "DELETE"});
     history.push("/my-essays");
   }
   useEffect(() => {

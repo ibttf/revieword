@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../styles/logo-no-background.png";
 import { useHistory } from "react-router-dom";
 import "../styles/LoginForm.css";
+import config from "../baseUrl"
 function LoginForm({ onLogin }) {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -12,13 +13,19 @@ function LoginForm({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    }).then((r) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({ username, password });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch(`${config.baseUrl}/login`,requestOptions)
+    .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
