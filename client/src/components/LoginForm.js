@@ -21,8 +21,6 @@ function LoginForm({ onLogin }) {
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
-      credentials: "include",
-      mode: "cors",
       body: raw,
       redirect: 'follow'
     };
