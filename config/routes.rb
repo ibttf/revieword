@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  
+  use Rack::Session::Cookie,
+    :httponly => true
+    :same_site => :none
+    :secure => true
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show]
   resources :essays, only: [:index,:create, :show, :destroy]
@@ -16,7 +23,7 @@ Rails.application.routes.draw do
   patch "/finish-review/:id", to: "essays#submit_review"
   patch "/submit-essay/:length", to: "users#submit_essay"
   patch "/submit-review/:length", to: "users#submit_review"
-  
+
   delete "/logout", to: "sessions#destroy"
   
   # Defines the root path route ("/")x

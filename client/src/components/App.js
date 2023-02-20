@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     // auto-login
-    fetch(`${config.baseUrl}/me`, {credentials: "same-origin"}).then((r) => {
+    fetch(`${config.baseUrl}/me`, {credentials: "include"}).then((r) => {
       if (r.ok) {
         r.json().then((user) =>setUser(user));
       }
