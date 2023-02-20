@@ -1,7 +1,3 @@
-  use Rack::Session::Cookie,
-    :httponly => true
-    :same_site => :none
-    :secure => true
 
 Rails.application.routes.draw do
 
