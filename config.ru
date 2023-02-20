@@ -7,5 +7,5 @@ Rails.application.load_server
 
 use Rack::Session::Cookie,
   :httponly => true
-  :same_site => :none
+  :same_site => false
   :secure => true
