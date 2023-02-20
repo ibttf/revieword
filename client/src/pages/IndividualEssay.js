@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "../styles/IndividualEssay.css";
 import Highlight from "../components/Highlight";
-
+import config from "../baseUrl"
 const IndividualEssay = () => {
   const history = useHistory();
   let { id } = useParams();
@@ -39,9 +39,11 @@ const IndividualEssay = () => {
     fetch(`/submit-review/${getEssayDetails(currentEssay)[1]}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+      
     });
     fetch(`/finish-review/${id}`, {
       method: "PATCH",
+
       headers: {
         "Content-Type": "application/json",
       },

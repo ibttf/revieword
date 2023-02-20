@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import "../styles/NewEssay.css";
+import config from "../baseUrl"
 function NewEssay({ user }) {
   const [content, setContent] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -11,12 +12,21 @@ function NewEssay({ user }) {
   const [userPoints, setUserPoints] = useState(0);
   const [pointValue, setPointValue] = useState(1);
   useEffect(() => {
-    fetch("/show_points")
-      .then((r) => r.json())
-      .then((points) => {
-        setUserPoints(points);
-      });
-  }, []);
+    fetch(`/show_points`)
+      .then((r) => 
+      {
+        if (r.ok){
+        r.json()
+              .then((points) => {
+
+                setUserPoints(points);
+              })
+        }else{
+          setErrors([...errors])
+        } 
+
+        })}
+  , []);
 
   function handleContentChange(cont) {
     setContent(cont);
@@ -49,6 +59,7 @@ function NewEssay({ user }) {
     setIsLoading(true);
     fetch(`/submit-essay/${essayPointValue}`, {
       method: "PATCH",
+
       headers: {
         "Content-Type": "application/json",
       },
@@ -58,8 +69,9 @@ function NewEssay({ user }) {
         setIsLoading(false);
         return;
       } else {
-        fetch("/essays", {
+        fetch(`/essays`, {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
           },
@@ -77,6 +89,7 @@ function NewEssay({ user }) {
               setErrors(err.errors);
               fetch(`/submit-review/${essayPointValue}`, {
                 method: "PATCH",
+
                 headers: {
                   "Content-Type": "application/json",
                 },

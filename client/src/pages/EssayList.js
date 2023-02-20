@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/EssayList.css";
-
+import config from "../baseUrl"
 function EssayList() {
   const [unReviewedEssays, setUnReviewedEssays] = useState([]);
   const [reviewedEssays, setReviewedEssays] = useState([]);
 
   useEffect(() => {
-    fetch("/essays-unreviewed")
+    fetch(`/essays-unreviewed`)
       .then((r) => r.json())
       .then(setUnReviewedEssays);
 
-    fetch("/essays-reviewed")
+    fetch(`/essays-reviewed`)
       .then((r) => r.json())
       .then(setReviewedEssays);
   }, []);
