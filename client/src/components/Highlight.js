@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import HighlightPop from "react-highlight-pop";
 import { useParams } from "react-router-dom";
 import "../styles/Highlight.css";
+import config from "../baseUrl"
 export default function Highlight({ content, highlights }) {
   const essayId = useParams().id;
 
@@ -35,7 +36,7 @@ export default function Highlight({ content, highlights }) {
     range.setEnd(endNode, end);
     let newEl = document.createElement("mark");
     range.surroundContents(newEl);
-    fetch(`/highlight/${essayId}`, {
+    fetch(`${config.baseUrl}/highlight/${essayId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

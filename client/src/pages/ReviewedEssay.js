@@ -8,7 +8,7 @@ const ReviewedEssay = () => {
   const [essay, setEssay] = useState({});
   const id = useParams().essay;
   useEffect(() => {
-    fetch(`/essays/${id}`)
+    fetch(`${config.baseUrl}/essays/${id}`)
       .then((r) => r.json())
       .then(setEssay);
   }, []);

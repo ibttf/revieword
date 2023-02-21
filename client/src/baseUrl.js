@@ -1,2 +1,2 @@
-const config={baseUrl: "http://localhost:3000"}
+const config={baseUrl: "https://shrouded-oasis-87140.herokuapp.com"}
 export default config
