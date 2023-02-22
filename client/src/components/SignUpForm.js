@@ -29,7 +29,7 @@ function SignUpForm({ onLogin }) {
       redirect: 'follow'
     };
 
-    fetch(`/signup`, requestOptions)
+    fetch(`${config.baseUrl}/signup`, requestOptions)
       .then((r) => {
       setIsLoading(false);
       if (r.ok) {
