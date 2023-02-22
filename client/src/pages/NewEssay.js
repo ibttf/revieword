@@ -12,7 +12,7 @@ function NewEssay({ user }) {
   const [userPoints, setUserPoints] = useState(0);
   const [pointValue, setPointValue] = useState(1);
   useEffect(() => {
-    fetch(`${config.baseUrl}/show_points`)
+    fetch(`$/show_points`)
       .then((r) => 
       {
         if (r.ok){
@@ -57,7 +57,7 @@ function NewEssay({ user }) {
     }
 
     setIsLoading(true);
-    fetch(`${config.baseUrl}/submit-essay/${essayPointValue}`, {
+    fetch(`$/submit-essay/${essayPointValue}`, {
       method: "PATCH",
 
       headers: {
@@ -69,7 +69,7 @@ function NewEssay({ user }) {
         setIsLoading(false);
         return;
       } else {
-        fetch(`${config.baseUrl}/essays`, {
+        fetch(`$/essays`, {
           method: "POST",
 
           headers: {
@@ -87,7 +87,7 @@ function NewEssay({ user }) {
           } else {
             r.json().then((err) => {
               setErrors(err.errors);
-              fetch(`${config.baseUrl}/submit-review/${essayPointValue}`, {
+              fetch(`/submit-review/${essayPointValue}`, {
                 method: "PATCH",
 
                 headers: {

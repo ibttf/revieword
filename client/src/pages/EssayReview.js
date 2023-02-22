@@ -6,7 +6,7 @@ const EssayReview = () => {
   const [reviewableEssays, setReviewableEssays] = useState([]);
 
   useEffect(() => {
-    fetch(`${config.baseUrl}/essays-reviewable`)
+    fetch(`/essays-reviewable`)
       .then((r) => r.json())
       .then((data) => setReviewableEssays([...data]));
   }, []);

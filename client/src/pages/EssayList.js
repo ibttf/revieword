@@ -7,11 +7,11 @@ function EssayList() {
   const [reviewedEssays, setReviewedEssays] = useState([]);
 
   useEffect(() => {
-    fetch(`${config.baseUrl}/essays-unreviewed`)
+    fetch(`/essays-unreviewed`)
       .then((r) => r.json())
       .then(setUnReviewedEssays);
 
-    fetch(`${config.baseUrl}/essays-reviewed`)
+    fetch(`/essays-reviewed`)
       .then((r) => r.json())
       .then(setReviewedEssays);
   }, []);
