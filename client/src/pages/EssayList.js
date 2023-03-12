@@ -11,7 +11,7 @@ function EssayList() {
       .then((r) => r.json())
       .then(setUnReviewedEssays);
 
-    fetch(`${config.baseUrl}/essays-reviewed`)
+    fetch(`/essays-reviewed`)
       .then((r) => r.json())
       .then(setReviewedEssays);
   }, []);

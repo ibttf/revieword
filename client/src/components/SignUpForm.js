@@ -13,23 +13,19 @@ function SignUpForm({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
+
+    fetch(`/signup`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
         username,
         password,
         password_confirmation: passwordConfirmation,
-    });
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch(`${config.baseUrl}/signup`, requestOptions)
+    }),
+    })
       .then((r) => {
       setIsLoading(false);
       if (r.ok) {
