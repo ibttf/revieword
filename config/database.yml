@@ -82,4 +82,5 @@ test:
 production:
   <<: *default
   database: revieword_production
-
+  username: reviewordbackend
+  password: <%= ENV["REVIEWORD_DATABASE_PASSWORD"] %>
