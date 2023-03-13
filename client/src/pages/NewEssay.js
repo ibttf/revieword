@@ -87,7 +87,7 @@ function NewEssay({ user }) {
           } else {
             r.json().then((err) => {
               setErrors(err.errors);
-              fetch(`${config.baseUrl}/submit-review/${essayPointValue}`, {
+              fetch(`/submit-review/${essayPointValue}`, {
                 method: "PATCH",
 
                 headers: {

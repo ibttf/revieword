@@ -14,12 +14,12 @@ const IndividualEssay = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentHighlights, setCurrentHighlights] = useState([]);
   useEffect(() => {
-    fetch(`${config.baseUrl}/current-essay/${id}`)
+    fetch(`/current-essay/${id}`)
       .then((r) => r.json())
       .then((data) => {
         setCurrentEssay(data);
       });
-    fetch(`${config.baseUrl}/current-essay-highlights/${id}`)
+    fetch(`/current-essay-highlights/${id}`)
       .then((r) => r.json())
       .then(setCurrentHighlights);
   }, []);
@@ -41,7 +41,7 @@ const IndividualEssay = () => {
       headers: { "Content-Type": "application/json" },
       
     });
-    fetch(`${config.baseUrl}/finish-review/${id}`, {
+    fetch(`/finish-review/${id}`, {
       method: "PATCH",
 
       headers: {
