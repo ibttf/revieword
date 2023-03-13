@@ -11,7 +11,7 @@ const UnreviewedEssay = () => {
     history.push("/my-essays");
   }
   useEffect(() => {
-    fetch(`/essays/${id}`)
+    fetch(`${config.baseUrl}/essays/${id}`)
       .then((r) => r.json())
       .then(setCurrentEssay);
   }, []);

@@ -15,7 +15,7 @@ function SignUpForm({ onLogin }) {
     setIsLoading(true);
 
 
-    fetch(`/signup`, {
+    fetch(`${config.baseUrl}/signup`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"

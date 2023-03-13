@@ -24,7 +24,7 @@ function LoginForm({ onLogin }) {
       body: raw,
       redirect: 'follow'
     };
-    fetch(`/login`,requestOptions)
+    fetch(`${config.baseUrl}/login`,requestOptions)
     .then((r) => {
       setIsLoading(false);
       if (r.ok) {
