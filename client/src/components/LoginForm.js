@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "../styles/logo-no-background.png";
 import { useHistory } from "react-router-dom";
 import "../styles/LoginForm.css";
 import config from "../baseUrl"
@@ -10,39 +9,32 @@ function LoginForm({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit(e) {
+  function handleLogin(e) {
     e.preventDefault();
+    setErrors([]);
     setIsLoading(true);
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({ username, password });
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    fetch(`/login`,requestOptions)
-    .then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
+    fetch(`${config.baseUrl}/users/login`, 
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      }).then(r=>r.json())
+      .then(data=>{
+        localStorage.setItem('accessToken', data.accessToken);
         history.push("/");
-      } else {
-        r.json().then((err) => {
-          setErrors(err.errors);
-        });
+
       }
-    });
-  }
+    ).catch(err=>setErrors(err))
+    setIsLoading(false);
+
+  };
 
   return (
     <div className="login-form">
       <h1>Welcome back</h1>
       <h2>Welcome back! Please enter your details.</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <label htmlFor="username">Username</label>
         <input
           type="text"

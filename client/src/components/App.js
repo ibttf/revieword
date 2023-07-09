@@ -9,27 +9,51 @@ import IndividualEssay from "../pages/IndividualEssay";
 import ReviewedEssay from "../pages/ReviewedEssay";
 import UnreviewedEssay from "../pages/UnreviewedEssay";
 import Home from "../pages/Home";
+import Loading from "../pages/Loading"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/App.css";
 import config from "../baseUrl"
 function App() {
   const [user, setUser] = useState(null);
+  const [isLoading,setIsLoading]=useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [message,setMessage]=useState("")
 
   useEffect(() => {
+    setIsLoading(true);
     // auto-login
-    fetch(`/me`).then((r) => {
-      if (r.ok) {
-        r.json().then((user) =>setUser(user));
-      }
-    })
+    checkLoginStatus();
+    setIsLoading(false);
   }, []);
 
+
+  const checkLoginStatus = async () => {
+    try {
+      const response = await fetch(`${config.baseUrl}/users/current`, {
+        headers: { 'Content-Type': 'application/json', 
+                    Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+      });
+
+      if (response.ok) {
+        setLoggedIn(true);
+        const data = await response.json();
+        setUser(data);
+        console.log(data)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  if (isLoading){
+    return <Loading />
+  }
   return (
     <>
       <main>
         <Switch>
           <Route path="/new">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <NewEssay user={user} />
           </Route>
           <Route path="/my-essays">

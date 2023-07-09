@@ -9,39 +9,33 @@ function SignUpForm({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit(e) {
+  function handleSignup(e) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
+    fetch(`${config.baseUrl}/users/signup`, 
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, passwordConfirmation }),
+      }).then(r=>r.json())
+      .then(data=>{
+        localStorage.setItem('accessToken', data.accessToken);
+        history.push("/");
 
-
-    fetch(`/signup`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
-    }),
-    })
-      .then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
       }
-    }).catch(err=>console.log(err, "hello"));
-    history.push("/");
-  }
+    ).catch(err=>setErrors(err))
+    setIsLoading(false);
+
+  };
+
 
   return (
     <div className="login-form">
       <h1>Create Account</h1>
       <h2>Please enter your details to make an account.</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignup}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
