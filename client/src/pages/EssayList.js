@@ -7,13 +7,26 @@ function EssayList() {
   const [reviewedEssays, setReviewedEssays] = useState([]);
 
   useEffect(() => {
-    fetch(`/essays-unreviewed`)
+    fetch(`${config.baseUrl}/essays/my-unreviewed`,{
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },  
+    })
       .then((r) => r.json())
-      .then(setUnReviewedEssays);
+      .then((essays)=>{
+        console.log(essays);
+        setUnReviewedEssays([...essays])
+      })
+      .catch(err=>console.log(err));
 
-    fetch(`/essays-reviewed`)
+    fetch(`${config.baseUrl}/essays/my-reviewed`,{
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },  
+    })
       .then((r) => r.json())
-      .then(setReviewedEssays);
+      .then(setReviewedEssays)
+      .catch(err=>console.log(err));
   }, []);
 
   function createEssayButton(s) {
@@ -55,7 +68,7 @@ function EssayList() {
                   {essay.content.substring(0, 100) + "..."}
                 </p>
                 <br></br>
-                <Link to={`/unreviewed-essay/${essay.id}`}>
+                <Link to={`/unreviewed-essay/${essay._id}`}>
                   <div className="essay-list-select">See Essay</div>
                 </Link>
               </div>
@@ -84,7 +97,7 @@ function EssayList() {
                   {essay.content.substring(0, 100) + "..."}
                 </p>
                 <br></br>
-                <Link to={`/my-essay/${essay.id}`}>
+                <Link to={`/my-essay/${essay._id}`}>
                   <div className="essay-list-select">See Review</div>
                 </Link>
               </div>

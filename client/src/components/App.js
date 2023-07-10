@@ -38,7 +38,6 @@ function App() {
         setLoggedIn(true);
         const data = await response.json();
         setUser(data);
-        console.log(data)
       }
     } catch (err) {
       console.log(err);
@@ -57,25 +56,25 @@ function App() {
             <NewEssay user={user} />
           </Route>
           <Route path="/my-essays">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <EssayList />
           </Route>
 
           <Route path="/review/:id">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <IndividualEssay />
           </Route>
 
           <Route path="/my-essay/:essay">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <ReviewedEssay />
           </Route>
           <Route path="/unreviewed-essay/:essay">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <UnreviewedEssay />
           </Route>
           <Route path="/review">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <EssayReview />
           </Route>
           <Route path="/login">
@@ -83,7 +82,7 @@ function App() {
           </Route>
 
           <Route path="/">
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} />
             <Home user={user} />
           </Route>
         </Switch>

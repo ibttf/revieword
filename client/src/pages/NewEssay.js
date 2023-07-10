@@ -1,114 +1,69 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import Loading from "./Loading";
 import "../styles/NewEssay.css";
 import config from "../baseUrl"
 function NewEssay({ user }) {
   const [content, setContent] = useState("");
   const [prompt, setPrompt] = useState("");
   const [errors, setErrors] = useState([]);
-  const [pointError, setPointError] = useState({});
+  const [isInvalidPoints, setIsInvalidPoints] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
-  const [userPoints, setUserPoints] = useState(0);
   const [pointValue, setPointValue] = useState(1);
-  useEffect(() => {
-    fetch(`/show_points`)
-      .then((r) => 
-      {
-        if (r.ok){
-        r.json()
-              .then((points) => {
 
-                setUserPoints(points);
-              })
-        }else{
-          setErrors([...errors])
-        } 
-
-        })}
-  , []);
-
-  function handleContentChange(cont) {
-    setContent(cont);
-    let contLength = cont.split(" ").length;
-    if (contLength < 300) {
-      setPointValue(1);
-    } else if (contLength < 700) {
-      setPointValue(2);
-    } else {
-      setPointValue(3);
-    }
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const essayLength = content.split(" ").length;
-    let essayPointValue = 0;
-    let length = "";
-    if (essayLength < 300) {
-      length = "Short";
-      essayPointValue = 1;
-    } else if (essayLength < 700) {
-      length = "Medium";
-      essayPointValue = 2;
-    } else {
-      length = "Long";
-      essayPointValue = 3;
-    }
-
-    setIsLoading(true);
-    fetch(`/submit-essay/${essayPointValue}`, {
-      method: "PATCH",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((r) => {
-      if (!r.ok) {
-        r.json().then(setPointError);
-        setIsLoading(false);
-        return;
-      } else {
-        fetch(`/essays`, {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            content,
-            prompt,
-            length: length,
-          }),
-        }).then((r) => {
-          setIsLoading(false);
-          if (r.ok) {
-            history.push("/my-essays");
-          } else {
-            r.json().then((err) => {
-              setErrors(err.errors);
-              fetch(`/submit-review/${essayPointValue}`, {
-                method: "PATCH",
-
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-            });
-          }
-        });
+  function handleContentChange(e){
+    let contentArr=content.split(" ")
+    if (contentArr.length>700){
+        setPointValue(3)
+        if (user.points < 3){
+          setIsInvalidPoints(true);
+        }
+    }else if (contentArr.length > 300 ){
+      setPointValue(2)
+      if (user.points < 2){
+        setIsInvalidPoints(true);
       }
-    });
+    }else{
+      setPointValue(1)
+      if (user.points < 1){
+        setIsInvalidPoints(true);
+      }
+    }
+    setContent(e)
   }
+  function handleCreateEssay(e) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    fetch(`${config.baseUrl}/essays`, {
+      method: "POST",
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },  
+      body: JSON.stringify({
+        prompt,
+        content
+      })
+    }).then((r) => r.json())
+    .then(data=>{
+      console.log(data)
+      localStorage.setItem('accessToken', data.accessToken);
+      setIsLoading(false);
+    }).catch((err)=> {
+      setErrors("Prompt or content field cannot be empty")
+    })
+    setIsLoading(false);
+    window.location.reload();
+  }
+  if (!user) return <Loading />
 
   return (
     <>
       <div className="new-essay">
         <h2>
-          Submit Essay <span>(You Have {userPoints} Points) </span>
+          Submit Essay <span>(You Have {user.points} Points) </span>
         </h2>
 
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleCreateEssay(e)}>
           <label htmlFor="prompt">
             <span>Prompt: </span>
           </label>
@@ -127,9 +82,9 @@ function NewEssay({ user }) {
           {errors.map((err) => (
             <div key={err} className="submit-essay-error">
               {err}
-            </div>
+            </div> 
           ))}
-          {<div>{pointError.error}</div>}
+          {isInvalidPoints ? <div className="invalid-points-error">Sorry! Looks like you don't have enough points to submit this essay</div>: <></>}
           <button type="submit">
             {isLoading ? "Loading..." : `Submit Essay (${pointValue} Point)`}
           </button>

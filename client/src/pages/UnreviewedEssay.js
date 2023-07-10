@@ -7,16 +7,30 @@ const UnreviewedEssay = () => {
   const history = useHistory();
   const [currentEssay, setCurrentEssay] = useState({});
   function handleDeleteClick(id) {
-    fetch(`/essays/${id}`, { method: "DELETE"});
+    fetch(`${config.baseUrl}/essays/${id}`, { 
+      method: "DELETE",
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },  
+    });
     history.push("/my-essays");
   }
   useEffect(() => {
-    fetch(`/essays/${id}`)
+    fetch(`${config.baseUrl}/essays/${id}`,{
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },  
+    })
       .then((r) => r.json())
-      .then(setCurrentEssay);
+      .then(essay=>setCurrentEssay({...essay}));
   }, []);
   return (
     <div className="unreviewed-essay">
+      <div className="reviewed-essay-header">
+        <p onClick={() =>history.push("/my-essays")}>
+          &lt; back to my essays
+        </p>
+      </div>
       <h1>Essay</h1>
       <div className="unreviewed-essay-block">
         <span>PROMPT: </span>

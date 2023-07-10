@@ -14,15 +14,42 @@ const IndividualEssay = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentHighlights, setCurrentHighlights] = useState([]);
   useEffect(() => {
-    fetch(`/current-essay/${id}`)
+    fetch(`${config.baseUrl}/essays/${id}`,{
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+    })
       .then((r) => r.json())
       .then((data) => {
         setCurrentEssay(data);
       });
-    fetch(`/current-essay-highlights/${id}`)
-      .then((r) => r.json())
-      .then(setCurrentHighlights);
   }, []);
+
+
+  function handleReviewSubmit(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    fetch(`${config.baseUrl}/users/${id}`, {
+      method: "PUT",
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}` }, 
+      body: JSON.stringify({
+        comments: overallComments
+      }),
+    }).then(r=>r.json())
+    .then(data=>{
+      localStorage.setItem('accessToken', data.accessToken);
+      history.push("/")
+    }).catch(err=>{
+      setErrors(err)
+    })
+      setIsLoading(false);
+  
+  }
+
+
+
   function getEssayDetails(essay) {
     let essayLength = essay.length;
     if (essayLength === "Short") {
@@ -33,39 +60,6 @@ const IndividualEssay = () => {
       return ["red", 3];
     }
   }
-  function handleReviewSubmit(e) {
-    e.preventDefault();
-    setIsLoading(true);
-    fetch(`/submit-review/${getEssayDetails(currentEssay)[1]}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      
-    });
-    fetch(`/finish-review/${id}`, {
-      method: "PATCH",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        overall_comments: overallComments,
-        tone_comments: toneComments,
-        flow_comments: flowComments,
-        is_reviewed: true,
-      }),
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        history.push("/");
-      } else {
-        r.json().then((err) => {
-          console.log(err.errors);
-          setErrors(err.errors);
-        });
-      }
-    });
-  }
-
   return (
     <div className="individual-essay">
       <h1>Review this Essay</h1>
@@ -111,7 +105,7 @@ const IndividualEssay = () => {
         <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
       </form>
       <div>
-        {errors ? errors.map((err) => <div key={err}>{err}</div>) : <></>}
+        {/* {errors ? errors.map((err) => <div key={err}>{err}</div>) : <></>} */}
       </div>
     </div>
   );

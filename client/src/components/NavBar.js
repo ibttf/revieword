@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../styles/logo-no-background.png";
 import "../styles/Navbar.css";
@@ -13,21 +13,18 @@ function NavBar({ user }) {
   const history=useHistory();
   const handleLogout = async () => {
     localStorage.removeItem('accessToken');
-    try {
-      const response = await fetch(`${config.baseUrl}/users/logout`, {
-        method: 'DELETE',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      });
+    const response = await fetch(`${config.baseUrl}/users/logout`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-      if (response.ok) {
-        window.location.reload();
-        history.push('/')
-        
-      }
-    } catch (message) {
-      console.log(message);
+    if (response.ok) {
+      window.location.reload();
+      history.push('/')
+      
     }
+
   };
     if (user) {
         return (

@@ -1,15 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Loading from "./Loading";
 import "../styles/EssayReview.css";
 import config from "../baseUrl"
 const EssayReview = () => {
   const [reviewableEssays, setReviewableEssays] = useState([]);
+  const [isLoading,setIsLoading]=useState(false);
+  const history=useHistory();
 
   useEffect(() => {
-    fetch(`/essays-reviewable`)
+    fetch(`${config.baseUrl}/essays/reviewable`,{
+
+      headers: { 'Content-Type': 'application/json', 
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+    })
       .then((r) => r.json())
-      .then((data) => setReviewableEssays([...data]));
+      .then((data) => {
+        console.log(data);
+        setReviewableEssays([...data])
+      });
   }, []);
+
+  const handleBeginReview=async(id)=>{
+    setIsLoading(true);
+
+    fetch(`${config.baseUrl}/users/${id}`,{
+      method: "POST",
+      headers: { 'Content-Type': 'application/json', 
+                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+    }).then(r=>r.json())
+    .then(data=>{
+      localStorage.setItem('accessToken', data.accessToken);
+    })
+
+    setIsLoading(false);
+    history.push(`/review/${id}`)
+  }
+
   function createEssayButton(s) {
     let color = "";
     let points = 0;
@@ -25,6 +52,9 @@ const EssayReview = () => {
     }
 
     return [color, points];
+  }
+  if (isLoading){
+    return <Loading />
   }
   return (
     <div className="essay-review">
@@ -51,11 +81,9 @@ const EssayReview = () => {
                 <div className="essay-content">
                   {'"' + essay.content.substring(0, 120) + "..." + '"'}
                 </div>
-                <Link to={`/review/${essay.id}`}>
-                  <button className="review-this-essay-btn">
-                    Review This Essay
-                  </button>
-                </Link>
+                <button className="review-this-essay-btn" onClick={()=>handleBeginReview(essay._id)}>
+                  Review This Essay
+                </button>
               </div>
             </>
           );

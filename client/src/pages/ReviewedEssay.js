@@ -8,9 +8,12 @@ const ReviewedEssay = () => {
   const [essay, setEssay] = useState({});
   const id = useParams().essay;
   useEffect(() => {
-    fetch(`/essays/${id}`)
+    fetch(`${config.baseUrl}/essays/${id}`,{
+      headers: { 'Content-Type': 'application/json', 
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
+    })
       .then((r) => r.json())
-      .then(setEssay);
+      .then(data=>setEssay(data));
   }, []);
   function handleBackToReviewsClick() {
     history.push("/my-essays");
@@ -19,7 +22,7 @@ const ReviewedEssay = () => {
     <div className="reviewed-essay">
       <div className="reviewed-essay-header">
         <p onClick={() => handleBackToReviewsClick()}>
-          &lt; back to reviewed essays
+          &lt; back to my essays
         </p>
         <h1>See Review</h1>
       </div>
@@ -28,7 +31,7 @@ const ReviewedEssay = () => {
           <h5>
             <span>Overall Comments: </span>
             <br></br>
-            {essay.overall_comments}
+            {essay.comments}
           </h5>
           <h5>
             <span>Tone Comments: </span>

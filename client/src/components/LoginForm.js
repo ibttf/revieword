@@ -23,6 +23,7 @@ function LoginForm({ onLogin }) {
       .then(data=>{
         localStorage.setItem('accessToken', data.accessToken);
         history.push("/");
+        window.location.reload();
 
       }
     ).catch(err=>setErrors(err))
