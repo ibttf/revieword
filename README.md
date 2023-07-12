@@ -18,21 +18,18 @@ A website designed for people to be able to review essays and get their essays r
 - [Acknowledgements](#acknowledgements)
 
 ## General Information
-
-This project, part of Flatiron Software Engineering track, Phase 4, focused on implementing a React frontend and Rails
-backend. Authentication requires users to login and protects data access. Servers are deployed to Heroku. We worked as a team of three to develop both the frontend and backend servers in one week.
+This project was built independently with a react frontend and a node/express backend. It is currently deployed at https://cheery-mermaid-a47c44.netlify.app.
 
 ## GitHub Repo
 
-- [Monorepo - frontend and backend servers](https://github.com/roylee0912/revieword)
+- [Frontend] https://github.com/roylee0912/revieword-frontend-react
+- [Backend] https://github.com/roylee0912/revieword-express-backend
 
 ## Technologies Used
 
-- Ruby 2.7.4
-- Rails 6.1.3
-- Active Model Serializers 0.10.12
 - NodeJS (v16), and npm
-- Postgresql 1.1
+- Express 4.18
+- MongoDb
 - bcrypt 3.1.7
 - React 17.0.2
 - React-Router-Dom 5.3.3
@@ -77,39 +74,11 @@ don't already have them.
 
 ### Clone repository
 
-**clone** the project repository from github: [https://github.com/roylee0912/revieword](https://github.com/roylee0912/revieword)
+**clone** the project repository from github: [https://github.com/roylee0912/revieword-frontend-react](https://github.com/roylee0912/revieword-frontend-react)
 
 ```console
-$ git clone https://github.com/roylee0912/revieword
+$ git clone https://github.com/roylee0912/revieword-frontend-react
 ```
-
-### Install the Latest Ruby Version
-
-Verify which version of Ruby you're running by entering this in the terminal:
-
-```sh
-ruby -v
-```
-
-Make sure that the Ruby version you're running is listed in the [supported
-runtimes][] by Heroku. At the time of writing, supported versions are 2.6.8,
-2.7.4, or 3.0.2. Our recommendation is 2.7.4, but make sure to check the site
-for the latest supported versions.
-
-If it's not, you can use `rvm` to install a newer version of Ruby:
-
-```sh
-rvm install 2.7.4 --default
-```
-
-You should also install the latest versions of `bundler` and `rails`:
-
-```sh
-gem install bundler
-gem install rails
-```
-
-[supported runtimes]: https://devcenter.heroku.com/articles/ruby-support#supported-runtimes
 
 ### Install NodeJS
 
@@ -139,18 +108,22 @@ npm i -g npm
 When you're ready to start building your project, run:
 
 ```sh
-bundle install
-rails db:create
-npm install --prefix client
+
+cd revieword-frontend-react
+npm install
+cd revieword-express-backend
+npm install
+
 ```
 
 ## Server Start
 
 You can use the following commands to run the application:
 
-- `rails db:migrate`: migrate the database
-- `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
-- `npm start --prefix client`: run the frontend on
+- `cd revieword-express-backend (if you haven't already done that)
+- npm run dev: run the backend on [http://localhost:3000](http://localhost:3000)
+- cd ..
+- `npm start`: run the frontend on
   [http://localhost:4000](http://localhost:4000)
 
 ### Backend Shutdown
@@ -196,9 +169,10 @@ It should be possible to shutdown the server using [CTRL-C]. If that fails, foll
 
 Backend:
 
-- Add Highlights class so highlights from a user review will persist to database
+- Implement refresh tokens for extra security
+- Add Oauth for google signin
 
 Frontend:
 
-- add mobile responsiveness
-- add a preloading screen
+- Make the navbar contain more information
+
