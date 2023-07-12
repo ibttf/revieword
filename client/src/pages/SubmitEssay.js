@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Loading from "./Loading";
-import "../styles/NewEssay.css";
+import "../styles/SubmitEssay.css";
 import config from "../baseUrl"
-function NewEssay({ user }) {
+function SubmitEssay({ user }) {
   const [content, setContent] = useState("");
   const [prompt, setPrompt] = useState("");
   const [errors, setErrors] = useState([]);
   const [isInvalidPoints, setIsInvalidPoints] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [pointValue, setPointValue] = useState(1);
+  const history=useHistory();
 
   function handleContentChange(e){
+    setContent(e.target.value)
     let contentArr=content.split(" ")
     if (contentArr.length>700){
         setPointValue(3)
@@ -28,8 +31,11 @@ function NewEssay({ user }) {
         setIsInvalidPoints(true);
       }
     }
-    setContent(e)
+
   }
+
+
+
   function handleCreateEssay(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -43,22 +49,29 @@ function NewEssay({ user }) {
         prompt,
         content
       })
-    }).then((r) => r.json())
-    .then(data=>{
-      console.log(data)
-      localStorage.setItem('accessToken', data.accessToken);
-      setIsLoading(false);
-    }).catch((err)=> {
-      setErrors("Prompt or content field cannot be empty")
+    }).then((r) => {
+      if (r.ok){
+        r.json()
+        .then(data=>{
+          localStorage.setItem('accessToken', data.accessToken);
+          setIsLoading(false);
+    
+          history.push("/my-essays")
+        })
+      }else{
+        r.json().then(data=>{
+          setErrors([data.error]);
+        })
+      }
     })
+    
     setIsLoading(false);
-    window.location.reload();
   }
   if (!user) return <Loading />
 
   return (
     <>
-      <div className="new-essay">
+      <div className="submit-essay">
         <h2>
           Submit Essay <span>(You Have {user.points} Points) </span>
         </h2>
@@ -77,7 +90,7 @@ function NewEssay({ user }) {
           <textarea
             id="content"
             rows="25"
-            onChange={(e) => handleContentChange(e.target.value)}
+            onChange={(e) => handleContentChange(e)}
           ></textarea>
           {errors.map((err) => (
             <div key={err} className="submit-essay-error">
@@ -94,4 +107,4 @@ function NewEssay({ user }) {
   );
 }
 
-export default NewEssay;
+export default SubmitEssay;

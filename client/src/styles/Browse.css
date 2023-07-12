@@ -1,17 +1,24 @@
-.essay-review {
+.grayed{
+  opacity:0.3 ;
+}
+.browse {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 10%;
+  
 }
-.essay-review-header {
+
+.browse-header {
   color: rgb(18, 26, 70);
+  margin-bottom: 40px;
 }
 .reviewable-essays {
+  width: 50%;
   margin: 0 20%;
   background-color: white;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 1%;
   height: fit-content;
 }
@@ -19,8 +26,8 @@
 .essay {
   border: 1px solid rgb(216, 216, 216);
   border-radius: 10px;
-  padding: 0% 2%;
-  margin: 8% 0;
+  padding: 2%;
+  margin: 2% 0;
 }
 .review-this-essay-btn {
   background-color: rgb(228, 228, 228);
@@ -34,7 +41,7 @@
   transform: 200ms;
 }
 .review-this-essay-btn:hover {
-  scale: 1.1;
+  background-color: rgb(192, 192, 192);
 }
 .essay-length-and-points {
   display: flex;
@@ -61,6 +68,26 @@
   margin-bottom: 20px;
   border-radius: 10px;
 }
-.essay-content {
-  font-family: cursive;
+
+@media only screen and (max-width: 1800px) {
+  .browse-header {
+    margin: 20px 0;
+    font-size: 35px;
+  }
+  .reviewable-essays {
+    margin: 0 10% !important;
+    width: 80% !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+
+  .review-this-essay-btn {
+    font-size: 13px;
+  }
+  .essay-length {
+    font-size: 14px;
+  }
+  .essay-added-points {
+    font-size: 12px;
+  }
 }

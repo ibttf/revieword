@@ -3,16 +3,18 @@ import { useParams, useHistory } from "react-router-dom";
 import "../styles/IndividualEssay.css";
 import Highlight from "../components/Highlight";
 import config from "../baseUrl"
-const IndividualEssay = () => {
+const IndividualEssay = (props) => {
   const history = useHistory();
   let { id } = useParams();
   const [currentEssay, setCurrentEssay] = useState({});
   const [overallComments, setOverallComments] = useState("");
   const [toneComments, setToneComments] = useState("");
   const [flowComments, setFlowComments] = useState("");
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentHighlights, setCurrentHighlights] = useState([]);
+
+
   useEffect(() => {
     fetch(`${config.baseUrl}/essays/${id}`,{
       credentials: 'include',
@@ -22,7 +24,7 @@ const IndividualEssay = () => {
       .then((r) => r.json())
       .then((data) => {
         setCurrentEssay(data);
-      });
+      }).catch(err=>setErrors([err.error]));
   }, []);
 
 
@@ -35,14 +37,17 @@ const IndividualEssay = () => {
       headers: { 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}` }, 
       body: JSON.stringify({
-        comments: overallComments
+        comments: overallComments,
+        toneComments,
+        flowComments
       }),
     }).then(r=>r.json())
     .then(data=>{
       localStorage.setItem('accessToken', data.accessToken);
       history.push("/")
+      window.location.reload();
     }).catch(err=>{
-      setErrors(err)
+      setErrors(err.error)
     })
       setIsLoading(false);
   
@@ -105,7 +110,7 @@ const IndividualEssay = () => {
         <button type="submit">{isLoading ? "Loading..." : "Submit"}</button>
       </form>
       <div>
-        {/* {errors ? errors.map((err) => <div key={err}>{err}</div>) : <></>} */}
+        {errors ? errors.map((err) => <div key={err}>{err}</div>) : <></>}
       </div>
     </div>
   );

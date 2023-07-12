@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/EssayList.css";
+import "../styles/MyEssays.css";
 import config from "../baseUrl"
-function EssayList() {
+function MyEssays() {
   const [unReviewedEssays, setUnReviewedEssays] = useState([]);
   const [reviewedEssays, setReviewedEssays] = useState([]);
 
@@ -17,7 +17,6 @@ function EssayList() {
         console.log(essays);
         setUnReviewedEssays([...essays])
       })
-      .catch(err=>console.log(err));
 
     fetch(`${config.baseUrl}/essays/my-reviewed`,{
       credentials: 'include',
@@ -26,7 +25,6 @@ function EssayList() {
     })
       .then((r) => r.json())
       .then(setReviewedEssays)
-      .catch(err=>console.log(err));
   }, []);
 
   function createEssayButton(s) {
@@ -46,7 +44,7 @@ function EssayList() {
     return [color, points];
   }
   return (
-    <div className="essay-list">
+    <div className="my-essays">
       <h2>Essays Still Waiting for a Review</h2>
       <div className="essays-container">
         {unReviewedEssays.map((essay) => {
@@ -69,7 +67,7 @@ function EssayList() {
                 </p>
                 <br></br>
                 <Link to={`/unreviewed-essay/${essay._id}`}>
-                  <div className="essay-list-select">See Essay</div>
+                  <div className="my-essays-select">See Essay</div>
                 </Link>
               </div>
             </>
@@ -98,7 +96,7 @@ function EssayList() {
                 </p>
                 <br></br>
                 <Link to={`/my-essay/${essay._id}`}>
-                  <div className="essay-list-select">See Review</div>
+                  <div className="my-essays-select">See Review</div>
                 </Link>
               </div>
             </>
@@ -109,4 +107,4 @@ function EssayList() {
   );
 }
 
-export default EssayList;
+export default MyEssays;

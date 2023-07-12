@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "../styles/ReviewedEssay.css";
-import EssayList from "./EssayList";
 import config from "../baseUrl"
 const ReviewedEssay = () => {
   const history = useHistory();

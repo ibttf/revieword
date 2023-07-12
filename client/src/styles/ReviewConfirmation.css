@@ -1,0 +1,51 @@
+.review-confirmation{
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    transform: translate (-25%,-25%);
+    height: 50vh;
+    width: 50%;
+    border: 2px solid rgba(1,1,1,0.1);
+    box-shadow: 1px 5px 4px 2px rgba(1,1,1,0.2);
+    border-radius: 2vw;
+    padding: 2% 5%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.icon-container{
+    font-size: 80px;
+    color: rgb(120, 120, 250);
+}
+.review-confirmation h2{
+    font-size: 38px;
+}
+.review-confirmation h3{
+    font-weight: normal;
+    text-align: center;
+    font-size: 19px;
+    padding: 2%;
+
+}
+.review-confirmation-button-container{
+    display: flex;
+}
+.review-confirmation-button-container button{
+    border: 1px solid ;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 2%;
+    white-space: nowrap;
+}
+.review-confirmation-cancel-button{
+    background-color: white;
+    border: rgb(120, 120, 250);
+    color: rgb(120, 120, 250);
+}
+.review-confirmation-submit-button{
+    background-color: rgb(120, 120, 250);
+    color: white;
+    border: rgb(120, 120, 250);
+}

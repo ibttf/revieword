@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../styles/logo-no-background.png";
 import "../styles/Navbar.css";
@@ -10,7 +10,9 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 function NavBar({ user }) {
+  const [isLoading,setIsLoading]=useState(true);
   const history=useHistory();
+
   const handleLogout = async () => {
     localStorage.removeItem('accessToken');
     const response = await fetch(`${config.baseUrl}/users/logout`, {
@@ -26,6 +28,7 @@ function NavBar({ user }) {
     }
 
   };
+  
     if (user) {
         return (
        <Navbar bg="light" expand="lg">
@@ -58,37 +61,39 @@ function NavBar({ user }) {
     </Navbar>
 
     )
-  } 
-      return (
-       <Navbar bg="light" expand="lg">
-      <Container>
+  } else{
 
-        <Navbar.Brand>
-          <Link to="/">
-            <img src={logo} className="top-page-img"></img>
-          </Link>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link >
-              <Link to="/login" className="navbar-btn">Review</Link>
-            </Nav.Link>
-            <Nav.Link >
-              <Link to="/login"  className="navbar-btn">Submit</Link>
-            </Nav.Link>
-            <Nav.Link >
-              <Link to="/login"  className="navbar-btn">My Essays</Link>
-            </Nav.Link>
-            <Nav.Link> 
-              <Link to="/login"  className="navbar-btn">Login</Link>
-            </Nav.Link>
-            
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    )
+    return (
+      <Navbar bg="light" expand="lg">
+     <Container>
+
+       <Navbar.Brand>
+         <Link to="/">
+           <img src={logo} className="top-page-img"></img>
+         </Link>
+       </Navbar.Brand>
+       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+       <Navbar.Collapse id="basic-navbar-nav">
+         <Nav className="me-auto">
+           <Nav.Link >
+             <Link to="/login" className="navbar-btn">Review</Link>
+           </Nav.Link>
+           <Nav.Link >
+             <Link to="/login"  className="navbar-btn">Submit</Link>
+           </Nav.Link>
+           <Nav.Link >
+             <Link to="/login"  className="navbar-btn">My Essays</Link>
+           </Nav.Link>
+           <Nav.Link> 
+             <Link to="/login"  className="navbar-btn">Login</Link>
+           </Nav.Link>
+           
+         </Nav>
+       </Navbar.Collapse>
+     </Container>
+   </Navbar>
+   )
+  }
   
 }
  

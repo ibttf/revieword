@@ -1,8 +1,11 @@
-.essay-list {
+.my-essays {
   margin: 0 20%;
+  margin-bottom: 5%;
 }
-.essay-list > h2 {
+.my-essays > h2 {
   color: rgb(18, 26, 70);
+  margin-bottom: 40px;
+  text-align: center;
 }
 .essays-container {
   background-color: white;
@@ -11,6 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 40px;
 }
 .single-essay {
   text-align: left !important;
@@ -24,7 +28,7 @@
 .single-essay-prompt {
   font-weight: bold;
 }
-.essay-list-select {
+.my-essays-select {
   color: rgb(18, 26, 70);
   padding: 5px;
   font-weight: bold;
@@ -33,9 +37,30 @@
   border: none;
   margin: 2%;
 }
-.essay-list-select:hover {
+.my-essays-select:hover {
   cursor: pointer;
 }
-.essay-list-select:focus {
+.my-essays-select:focus {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 1600px) {
+  .my-essays {
+    margin: 0 10%;
+  }
+  .my-essays > h2 {
+    font-size: 30px;
+    margin: 20px 0;
+  }
+  .single-essay {
+    flex-basis: 40%;
+    border-radius: 5px;
+    padding: 2%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .single-essay {
+    flex-basis: 80%;
+  }
 }

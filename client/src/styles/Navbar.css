@@ -7,7 +7,10 @@
 .top-page-img {
   padding-left: 10%;
   padding-right: 10%;
-  width: 18vw;
+  width: 400px;
+}
+.top-page-img:hover{
+  cursor:pointer;
 }
 .navbar{
   margin: 2% 15%;
@@ -19,7 +22,7 @@
   border: none;
   color: darkgray;
   font-weight: bold;
-  font-size: 1.8vh;
+  font-size: 18px;
   font-family: sans-serif;
   padding: 10px;
   margin-right: 30px;
@@ -43,5 +46,23 @@
     padding: 5%;
     border-radius: 0;
 
+  }
+}
+
+
+@media only screen and (max-width: 1600px) {
+  .top-page-img {
+    width: 300px;
+  }
+  .navbar-btn {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .top-page-img {
+    width: 200px;
+  }
+  .navbar-btn {
+    font-size: 12px;
   }
 }

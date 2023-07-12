@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+
 import "../styles/UnreviewedEssay.css";
 import config from "../baseUrl"
 const UnreviewedEssay = () => {
   const id = useParams().essay;
   const history = useHistory();
   const [currentEssay, setCurrentEssay] = useState({});
+  const [errors,setErrors]=useState([])
   function handleDeleteClick(id) {
     fetch(`${config.baseUrl}/essays/${id}`, { 
       method: "DELETE",
       credentials: 'include',
       headers: { 'Content-Type': 'application/json',
                   Authorization: `Bearer ${localStorage.getItem('accessToken')}` },  
-    });
+    })
+    .catch(err=>setErrors([err.error]))
+    ;
     history.push("/my-essays");
   }
   useEffect(() => {
@@ -42,6 +46,13 @@ const UnreviewedEssay = () => {
         <br></br>
         {currentEssay.content}
       </div>
+      <div className="errors">
+          {errors ? (
+            errors.map((err) => <div key={err}>Oops! {err}</div>)
+          ) : (
+            <></>
+          )}
+        </div>
       <p
         className="delete-unreviewed-essay"
         onClick={() => handleDeleteClick(id)}

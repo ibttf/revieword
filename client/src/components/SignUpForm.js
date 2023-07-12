@@ -25,7 +25,7 @@ function SignUpForm({ onLogin }) {
         history.push("/");
 
       }
-    ).catch(err=>setErrors(err))
+    ).catch(err=>setErrors([err.error]))
     setIsLoading(false);
 
   };

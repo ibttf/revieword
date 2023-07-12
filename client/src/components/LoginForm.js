@@ -26,7 +26,7 @@ function LoginForm({ onLogin }) {
         window.location.reload();
 
       }
-    ).catch(err=>setErrors(err))
+    ).catch(err=>setErrors([err.error]))
     setIsLoading(false);
 
   };

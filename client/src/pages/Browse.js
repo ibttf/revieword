@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import Loading from "./Loading";
-import "../styles/EssayReview.css";
+import ReviewConfirmation from "../components/ReviewConfirmation";
+import "../styles/Browse.css";
 import config from "../baseUrl"
-const EssayReview = () => {
+
+
+const Browse = (props) => {
   const [reviewableEssays, setReviewableEssays] = useState([]);
+  const [essayId,setEssayId]=useState("");
   const [isLoading,setIsLoading]=useState(false);
-  const history=useHistory();
+  const [showReviewConfirmation,setShowReviewConfirmation]=useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`${config.baseUrl}/essays/reviewable`,{
 
       headers: { 'Content-Type': 'application/json', 
@@ -16,26 +20,11 @@ const EssayReview = () => {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
         setReviewableEssays([...data])
       });
+    setIsLoading(false);
   }, []);
 
-  const handleBeginReview=async(id)=>{
-    setIsLoading(true);
-
-    fetch(`${config.baseUrl}/users/${id}`,{
-      method: "POST",
-      headers: { 'Content-Type': 'application/json', 
-                  Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
-    }).then(r=>r.json())
-    .then(data=>{
-      localStorage.setItem('accessToken', data.accessToken);
-    })
-
-    setIsLoading(false);
-    history.push(`/review/${id}`)
-  }
 
   function createEssayButton(s) {
     let color = "";
@@ -57,8 +46,13 @@ const EssayReview = () => {
     return <Loading />
   }
   return (
-    <div className="essay-review">
-      <h1 className="essay-review-header">Review an Essay</h1>
+    <>
+    <div className={`browse ${showReviewConfirmation ? "grayed" : ""}`} onClick={()=>
+    {setShowReviewConfirmation(false)
+    props.setStopScroll(false)}
+    }
+    >
+      <h1 className="browse-header">Review an Essay</h1>
       <div className="reviewable-essays">
         {reviewableEssays.map((essay) => {
           return (
@@ -81,16 +75,26 @@ const EssayReview = () => {
                 <div className="essay-content">
                   {'"' + essay.content.substring(0, 120) + "..." + '"'}
                 </div>
-                <button className="review-this-essay-btn" onClick={()=>handleBeginReview(essay._id)}>
+                <button className="review-this-essay-btn" onClick={(e)=>{
+                    e.stopPropagation();
+                    setShowReviewConfirmation(true);
+                    props.setStopScroll(true);
+                    setEssayId(essay._id)
+                  }}>
                   Review This Essay
                 </button>
+
               </div>
             </>
           );
         })}
+
       </div>
+      
     </div>
+    <ReviewConfirmation isShowing={showReviewConfirmation} setIsShowing={setShowReviewConfirmation} essayId={essayId} setStopScroll={props.setStopScroll}/>
+    </>
   );
 };
 
-export default EssayReview;
+export default Browse;

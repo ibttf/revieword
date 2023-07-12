@@ -1,0 +1,21 @@
+.reviewing-error-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%; 
+}
+.reviewing-error-container h1{
+    font-size: 50px;
+    font-weight: normal;
+}
+.reviewing-error-container h3{
+    font-size: 40px;
+    color: rgb(89, 89, 253);
+}
+.reviewing-error-container h3:hover{
+    cursor:pointer;
+}
+.reviewing-error-container h3:active{
+    color: blue;
+}
