@@ -33,3 +33,25 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/app
+/bin
+/config
+/db
+/lib
+/log
+/node_modules
+/revieword-express-backend
+/storage
+/test
+/tmp
+/vendor
+/.gitattributes
+/.ruby-version
+/.tool-versions
+/config.ru
+/Gemfile
+/Gemfile.lock
+/package-lock.json
+/package.json
+/Rakefile
