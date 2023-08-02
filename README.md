@@ -1,7 +1,8 @@
 # Revieword
 A website designed for people to be able to review essays and get their essays reviewed.
 
-[![Video Walkthrough](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee)](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee)
+Deployed on: https://cheery-mermaid-a47c44.netlify.app
+
 ## Table of Contents
 
 - [General Info](#general-information)
@@ -12,28 +13,9 @@ A website designed for people to be able to review essays and get their essays r
 - [Server Start](#server-start)
 - [Usage](#usage)
 - [Deploying To Heroku](#deploying-to-heroku)
-- [Troubleshooting](#troubleshooting)
-- [Project Status](#project-status)
-- [Room for Improvement](#room-for-improvement)
-- [Acknowledgements](#acknowledgements)
-
 ## GitHub Repo
 
 - [Monorepo - frontend and backend servers](https://github.com/roylee0912/revieword)
-
-## Technologies Used
-
-- Ruby 2.7.4
-- Rails 6.1.3
-- Active Model Serializers 0.10.12
-- NodeJS (v16), and npm
-- Postgresql 1.1
-- bcrypt 3.1.7
-- React 17.0.2
-- React-Router-Dom 5.3.3
-
-See Environment Setup below for instructions on installing these tools if you
-don't already have them.
 
 ## Features
 
@@ -78,56 +60,6 @@ don't already have them.
 $ git clone https://github.com/roylee0912/revieword
 ```
 
-### Install the Latest Ruby Version
-
-Verify which version of Ruby you're running by entering this in the terminal:
-
-```sh
-ruby -v
-```
-
-Make sure that the Ruby version you're running is listed in the [supported
-runtimes][] by Heroku. At the time of writing, supported versions are 2.6.8,
-2.7.4, or 3.0.2. Our recommendation is 2.7.4, but make sure to check the site
-for the latest supported versions.
-
-If it's not, you can use `rvm` to install a newer version of Ruby:
-
-```sh
-rvm install 2.7.4 --default
-```
-
-You should also install the latest versions of `bundler` and `rails`:
-
-```sh
-gem install bundler
-gem install rails
-```
-
-[supported runtimes]: https://devcenter.heroku.com/articles/ruby-support#supported-runtimes
-
-### Install NodeJS
-
-Verify you are running a recent version of Node with:
-
-```sh
-node -v
-```
-
-If your Node version is not 16.x.x, install it and set it as the current and
-default version with:
-
-```sh
-nvm install 16
-nvm use 16
-nvm alias default 16
-```
-
-You can also update your npm version with:
-
-```sh
-npm i -g npm
-```
 
 ### Application Install
 
@@ -182,18 +114,3 @@ It should be possible to shutdown the server using [CTRL-C]. If that fails, foll
 
 5. Go to [`Logout`] to sign out of your account and get redirected back to the homepage.
 
-
-## Project Status
-
-- Project is: _in progress_.
-
-## Room for Improvement
-
-Backend:
-
-- Add Highlights class so highlights from a user review will persist to database
-
-Frontend:
-
-- add mobile responsiveness
-- add a preloading screen
