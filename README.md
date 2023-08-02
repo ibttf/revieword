@@ -17,11 +17,6 @@ A website designed for people to be able to review essays and get their essays r
 - [Room for Improvement](#room-for-improvement)
 - [Acknowledgements](#acknowledgements)
 
-## General Information
-
-This project, part of Flatiron Software Engineering track, Phase 4, focused on implementing a React frontend and Rails
-backend. Authentication requires users to login and protects data access. Servers are deployed to Heroku. We worked as a team of three to develop both the frontend and backend servers in one week.
-
 ## GitHub Repo
 
 - [Monorepo - frontend and backend servers](https://github.com/roylee0912/revieword)
