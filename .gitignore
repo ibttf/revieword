@@ -9,3 +9,4 @@
 ./revieword-express-backend/node_modules
 ./revieword-express-backend/.gitignore
 ./revieword-express-backend/package-lock.json
+./revieword-express-backend/.env
