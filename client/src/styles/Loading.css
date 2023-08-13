@@ -4,5 +4,6 @@
     text-align: center;
     position:fixed;
     top: 30%;
-    font-size: 100px;
+    width:100vw;
+    font-size: 200px;
 }
