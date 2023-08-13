@@ -12,7 +12,9 @@ const ReviewedEssay = () => {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
     })
       .then((r) => r.json())
-      .then(data=>setEssay(data));
+      .then(data=>{
+        setEssay(data)});
+      
   }, []);
   function handleBackToReviewsClick() {
     history.push("/my-essays");
@@ -35,11 +37,11 @@ const ReviewedEssay = () => {
           <h5>
             <span>Tone Comments: </span>
             <br></br>
-            {essay.tone_comments}
+            {essay.toneComments}
           </h5>
           <h5>
             <span>Flow Comments: </span>
-            <br></br> {essay.flow_comments}
+            <br></br> {essay.flowComments}
           </h5>
         </div>
         <div className="reviewed-essay-content">

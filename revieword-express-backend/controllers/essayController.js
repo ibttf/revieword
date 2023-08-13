@@ -89,7 +89,6 @@ const getSpecificEssay = asyncHandler(async (req,res)=>{
 //@access private
 
 const getReviewableEssays = asyncHandler(async (req,res)=>{
-    console.log(req.user.id)
     const essays =await Essay.find({userId: {$ne: req.user.id}, reviewProcess: "false"})
     res.status(200).json(essays);
 })
@@ -129,9 +128,9 @@ const deleteSpecificEssay = asyncHandler(async (req,res)=>{
     }
 
     if (essay.user_id.toString()!== req.user.id){
-        res.status(403).json({error: "User don't have permission to update other's essays"})
+        res.status(403).json({error: "Users don't have permission to update other's essays"})
     }
-
+    
 
     await essay.deleteOne({_id: req.params.id});
     res.status(200).json(essay)

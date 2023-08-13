@@ -38,8 +38,8 @@ const IndividualEssay = (props) => {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}` }, 
       body: JSON.stringify({
         comments: overallComments,
-        toneComments,
-        flowComments
+        toneComments: toneComments,
+        flowComments: flowComments
       }),
     }).then(r=>r.json())
     .then(data=>{

@@ -10,6 +10,7 @@ const UnreviewedEssay = () => {
   const [errors,setErrors]=useState([])
   function handleDeleteClick(id) {
     fetch(`${config.baseUrl}/essays/${id}`, { 
+      
       method: "DELETE",
       credentials: 'include',
       headers: { 'Content-Type': 'application/json',
@@ -17,7 +18,8 @@ const UnreviewedEssay = () => {
     })
     .catch(err=>setErrors([err.error]))
     ;
-    history.push("/my-essays");
+
+    // history.push("/my-essays");
   }
   useEffect(() => {
     fetch(`${config.baseUrl}/essays/${id}`,{

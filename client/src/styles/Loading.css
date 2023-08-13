@@ -1,9 +1,10 @@
 .loading{
     background-color: rgb(208, 236, 245);
-    color: rgb(204, 204, 204);
+    color: rgb(107, 107, 107);
     text-align: center;
     position:fixed;
     top: 30%;
-    width:100vw;
-    font-size: 200px;
+    width:100%;
+    font-weight:bold;
+    font-size: 150px;
 }
