@@ -1,7 +1,8 @@
 # Revieword
 A website designed for people to be able to review essays and get their essays reviewed.
 
-[![Video Walkthrough](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee)](https://www.youtube.com/watch?v=vokFeylkhL0&ab_channel=RoyLee)
+Deployed on: https://cheery-mermaid-a47c44.netlify.app
+
 ## Table of Contents
 
 - [General Info](#general-information)
@@ -24,6 +25,7 @@ This project was built independently with a react frontend and a node/express ba
 
 - [Frontend] https://github.com/roylee0912/revieword-frontend-react
 - [Backend] https://github.com/roylee0912/revieword-express-backend
+
 
 ## Technologies Used
 
@@ -77,6 +79,7 @@ don't already have them.
 **clone** the project repository from github: [https://github.com/roylee0912/revieword-frontend-react](https://github.com/roylee0912/revieword-frontend-react)
 
 ```console
+
 $ git clone https://github.com/roylee0912/revieword-frontend-react
 ```
 
@@ -102,6 +105,8 @@ You can also update your npm version with:
 ```sh
 npm i -g npm
 ```
+
+
 
 ### Application Install
 
@@ -161,6 +166,7 @@ It should be possible to shutdown the server using [CTRL-C]. If that fails, foll
 5. Go to [`Logout`] to sign out of your account and get redirected back to the homepage.
 
 
+
 ## Project Status
 
 - Project is: _in progress_.
@@ -175,4 +181,3 @@ Backend:
 Frontend:
 
 - Make the navbar contain more information
-
