@@ -19,7 +19,7 @@ Deployed on: https://cheery-mermaid-a47c44.netlify.app
 - [Acknowledgements](#acknowledgements)
 
 ## General Information
-This project was built independently with a react frontend and a node/express backend. It is currently deployed at https://cheery-mermaid-a47c44.netlify.app.
+This project was built independently with a react frontend and a node/express backend.
 
 ## GitHub Repo
 

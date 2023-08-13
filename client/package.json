@@ -2,7 +2,7 @@
   "name": "revieword",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://reviewordbackend.herokuapp.com",
+  "proxy": "https://revieword-backend.onrender.com",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
