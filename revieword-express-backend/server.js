@@ -8,8 +8,7 @@ const errorHandler=require('./middleware/errorHandler')
     
 
   const corsOptions = {
-    origin: 'http://localhost:3000',
-    // origin: 'https://cheery-mermaid-a47c44.netlify.app', // Replace with your React frontend URL
+    origin: ["http://localhost:3000","https://cheery-mermaid-a47c44.netlify.app"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: 'true',
