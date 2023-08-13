@@ -13,9 +13,31 @@ Deployed on: https://cheery-mermaid-a47c44.netlify.app
 - [Server Start](#server-start)
 - [Usage](#usage)
 - [Deploying To Heroku](#deploying-to-heroku)
+- [Troubleshooting](#troubleshooting)
+- [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
+- [Acknowledgements](#acknowledgements)
+
+## General Information
+This project was built independently with a react frontend and a node/express backend. It is currently deployed at https://cheery-mermaid-a47c44.netlify.app.
+
 ## GitHub Repo
 
-- [Monorepo - frontend and backend servers](https://github.com/roylee0912/revieword)
+- [Frontend] https://github.com/roylee0912/revieword-frontend-react
+- [Backend] https://github.com/roylee0912/revieword-express-backend
+
+
+## Technologies Used
+
+- NodeJS (v16), and npm
+- Express 4.18
+- MongoDb
+- bcrypt 3.1.7
+- React 17.0.2
+- React-Router-Dom 5.3.3
+
+See Environment Setup below for instructions on installing these tools if you
+don't already have them.
 
 ## Features
 
@@ -54,11 +76,36 @@ Deployed on: https://cheery-mermaid-a47c44.netlify.app
 
 ### Clone repository
 
-**clone** the project repository from github: [https://github.com/roylee0912/revieword](https://github.com/roylee0912/revieword)
+**clone** the project repository from github: [https://github.com/roylee0912/revieword-frontend-react](https://github.com/roylee0912/revieword-frontend-react)
 
 ```console
-$ git clone https://github.com/roylee0912/revieword
+
+$ git clone https://github.com/roylee0912/revieword-frontend-react
 ```
+
+### Install NodeJS
+
+Verify you are running a recent version of Node with:
+
+```sh
+node -v
+```
+
+If your Node version is not 16.x.x, install it and set it as the current and
+default version with:
+
+```sh
+nvm install 16
+nvm use 16
+nvm alias default 16
+```
+
+You can also update your npm version with:
+
+```sh
+npm i -g npm
+```
+
 
 
 ### Application Install
@@ -66,18 +113,22 @@ $ git clone https://github.com/roylee0912/revieword
 When you're ready to start building your project, run:
 
 ```sh
-bundle install
-rails db:create
-npm install --prefix client
+
+cd revieword-frontend-react
+npm install
+cd revieword-express-backend
+npm install
+
 ```
 
 ## Server Start
 
 You can use the following commands to run the application:
 
-- `rails db:migrate`: migrate the database
-- `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
-- `npm start --prefix client`: run the frontend on
+- `cd revieword-express-backend (if you haven't already done that)
+- npm run dev: run the backend on [http://localhost:3000](http://localhost:3000)
+- cd ..
+- `npm start`: run the frontend on
   [http://localhost:4000](http://localhost:4000)
 
 ### Backend Shutdown
@@ -114,3 +165,19 @@ It should be possible to shutdown the server using [CTRL-C]. If that fails, foll
 
 5. Go to [`Logout`] to sign out of your account and get redirected back to the homepage.
 
+
+
+## Project Status
+
+- Project is: _in progress_.
+
+## Room for Improvement
+
+Backend:
+
+- Implement refresh tokens for extra security
+- Add Oauth for google signin
+
+Frontend:
+
+- Make the navbar contain more information
