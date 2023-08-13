@@ -76,11 +76,11 @@ don't already have them.
 
 ### Clone repository
 
-**clone** the project repository from github: [https://github.com/roylee0912/revieword-frontend-react](https://github.com/roylee0912/revieword-frontend-react)
+**clone** the project repository from github: [https://github.com/roylee0912/revieword](https://github.com/roylee0912/revieword)
 
 ```console
 
-$ git clone https://github.com/roylee0912/revieword-frontend-react
+$ git clone https://github.com/roylee0912/revieword
 ```
 
 ### Install NodeJS
@@ -112,24 +112,22 @@ npm i -g npm
 
 When you're ready to start building your project, run:
 
+FRONTEND:
 ```sh
 
 cd revieword-frontend-react
 npm install
-cd revieword-express-backend
-npm install
+npm start
+
 
 ```
 
 ## Server Start
-
+IN A NEW TERMINAL,
 You can use the following commands to run the application:
 
 - `cd revieword-express-backend (if you haven't already done that)
 - npm run dev: run the backend on [http://localhost:3000](http://localhost:3000)
-- cd ..
-- `npm start`: run the frontend on
-  [http://localhost:4000](http://localhost:4000)
 
 ### Backend Shutdown
 
