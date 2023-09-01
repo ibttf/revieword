@@ -133,7 +133,8 @@
   .squiggle{
     height: 5vw;
     width: 20vw;
-    margin-left: 60%;
+    position:relative;
+
   
   }
   .hero-blob{
