@@ -1,7 +1,7 @@
 # Revieword
 A website designed for people to be able to review essays and get their essays reviewed.
 
-Deployed on: https://cheery-mermaid-a47c44.netlify.app
+Deployed on: https://revieword.netlify.app
 
 ## Table of Contents
 
